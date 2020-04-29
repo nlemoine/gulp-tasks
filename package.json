@@ -70,7 +70,6 @@
     "postcss-url": "^8.0.0",
     "rollup": "^2.7.3",
     "rollup-plugin-analyzer": "^3.2.2",
-    "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-filesize": "^7.0.0",
     "rollup-plugin-multi-input": "^1.1.1",
     "rollup-plugin-sizes": "^1.0.2",
