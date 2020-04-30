@@ -14,7 +14,7 @@ module.exports = (gulp, config) => {
     };
 
     // Custom prooxy URL
-    if (config.hasOwnProperty('proxyUrl')) {
+    if (config.hasOwnProperty('proxyUrl') && config.proxyUrl) {
       bsConfig = {
         ...bsConfig,
         proxy: {
