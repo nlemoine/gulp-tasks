@@ -3,7 +3,7 @@ const plugins = require('../utils/plugins');
 
 module.exports = (gulp, config) => {
   const task = () => {
-    return src(config.emails.src)
+    return src(config.src)
       .pipe(plugins.mjml())
       .pipe(
         plugins.rename((path) => {
@@ -11,7 +11,7 @@ module.exports = (gulp, config) => {
           path.extname = '.twig';
         })
       )
-      .pipe(dest(config.emails.dest));
+      .pipe(dest(config.dest));
   };
   gulp.task(config.task, task);
 };
