@@ -64,19 +64,13 @@ module.exports = (gulp, config) => {
   const cloneSink = plugins.clone.sink();
 
   /**
-   * Duplicate and apply RTLcss
+   * Apply RTLcss
    */
   const rtlFile = lazypipe()
-    .pipe(() => {
-      return cloneSink;
-    })
     .pipe(plugins.rename, {
       suffix: '-rtl',
     })
-    .pipe(plugins.rtlcss)
-    .pipe(() => {
-      return cloneSink.tap();
-    });
+    .pipe(plugins.rtlcss);
 
   const styles = () => {
     return (
@@ -101,7 +95,17 @@ module.exports = (gulp, config) => {
         .pipe(
           plugins.if((file) => {
             return !!getFileOptionValue(file, 'rtl');
+          }, cloneSink)
+        )
+        .pipe(
+          plugins.if((file) => {
+            return !!getFileOptionValue(file, 'rtl');
           }, rtlFile())
+        )
+        .pipe(
+          plugins.if((file) => {
+            return !!getFileOptionValue(file, 'rtl');
+          }, cloneSink.tap())
         )
         .pipe(
           plugins.postcss({

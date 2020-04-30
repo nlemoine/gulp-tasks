@@ -8,6 +8,10 @@ module.exports = (gulp, config) => {
     const tasks = getEnabledTasks(config);
 
     Object.values(tasks).forEach((task) => {
+      if (!task.hasOwnProperty('behavior')) {
+        return;
+      }
+
       let src = task.src;
       const taskName = task.task;
 
@@ -29,22 +33,11 @@ module.exports = (gulp, config) => {
       }
 
       const reload = (cb) => {
-        if (!task.hasOwnProperty('behavior')) {
-          return;
-        }
-        if (!task.behavior) {
-          return;
-        }
-        browserSync.reload(
-          task.hasOwnProperty('behavior') && task.behavior === 'inject'
-            ? '*.css'
-            : task.dest
-        );
+        browserSync.reload(task.behavior === 'inject' ? '*.css' : task.dest);
         cb();
       };
 
       gulp.watch(src, gulp.series(taskName, reload));
-      done();
     });
 
     if (config.hasOwnProperty('viewsPath')) {
@@ -54,6 +47,8 @@ module.exports = (gulp, config) => {
       };
       gulp.watch(config.viewsPath, reloadViews);
     }
+
+    done();
   };
 
   gulp.task('watch', watch);
