@@ -46,6 +46,10 @@ module.exports = (gulp, config) => {
       gulp.watch(src, gulp.series(taskName, reload));
       done();
     });
+
+    if (config.hasOwnProperty('viewsPath')) {
+      gulp.watch(config.viewsPath, browserSync.reload);
+    }
   };
 
   gulp.task('watch', watch);
