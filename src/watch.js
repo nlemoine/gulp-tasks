@@ -40,7 +40,7 @@ module.exports = (gulp, config) => {
       gulp.watch(src, gulp.series(taskName, reload));
     });
 
-    if (config.hasOwnProperty('viewsPath')) {
+    if (config.hasOwnProperty('viewsSrc')) {
       const reloadViews = (cb) => {
         browserSync.reload();
         cb();
