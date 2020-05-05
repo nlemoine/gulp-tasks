@@ -1,13 +1,3 @@
-module.exports.styles = require('./src/styles');
-module.exports.tailwind = require('./src/tailwind');
-module.exports.scripts = require('./src/scripts');
-module.exports.modernizr = require('./src/modernizr');
-module.exports.images = require('./src/images');
-module.exports.spriteSvg = require('./src/sprite-svg');
-module.exports.fonts = require('./src/fonts');
-module.exports.emails = require('./src/emails');
-module.exports.clean = require('./src/clean');
-
 const {
   getEnabledTasks,
   getRevisionedTasks,

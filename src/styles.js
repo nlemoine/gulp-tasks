@@ -8,13 +8,15 @@ const lazypipe = require('lazypipe');
 const Fiber = require('fibers');
 const sass = require('sass');
 const purgecss = require('@fullhuman/postcss-purgecss');
+const bs = require('browser-sync');
 
 const plugins = require('../utils/plugins');
 const isProduction = require('../utils/env');
+const { destMemory } = require('../memory');
 
 plugins.sass.compiler = sass;
 
-module.exports = (gulp, config) => {
+module.exports = (gulp, config, mem) => {
   config = {
     options: {},
     ...config,
@@ -157,7 +159,7 @@ module.exports = (gulp, config) => {
           )
         )
         .pipe(plugins.if(!isProduction, plugins.sourcemaps.write('.')))
-        .pipe(dest(config.dest))
+        .pipe(bs.active ? destMemory(config.dest) : dest(config.dest))
     );
   };
   gulp.task(config.task, styles);

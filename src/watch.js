@@ -45,7 +45,7 @@ module.exports = (gulp, config) => {
         browserSync.reload();
         cb();
       };
-      gulp.watch(config.viewsPath, reloadViews);
+      gulp.watch(config.viewsSrc, reloadViews);
     }
 
     done();

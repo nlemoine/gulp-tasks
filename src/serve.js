@@ -5,12 +5,19 @@ const { execSync } = require('child_process');
 const getUrls = require('get-urls');
 const stripColor = require('strip-color');
 const commandExistsSync = require('command-exists').sync;
+const { memoryMiddleware } = require('../memory');
 
 module.exports = (gulp, config) => {
   const serve = (done) => {
     let bsConfig = {
       open: false,
       minify: true,
+      middleware: memoryMiddleware({
+        publicPath: config.publicPath || 'web',
+        headers: {
+          'X-Served-From': 'memory',
+        },
+      }),
     };
 
     // Custom prooxy URL
