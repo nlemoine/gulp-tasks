@@ -1,4 +1,5 @@
 const { src, dest } = require('gulp');
+const path = require('path');
 
 const pngquant = require('imagemin-pngquant');
 const zopfli = require('imagemin-zopfli');
@@ -8,12 +9,18 @@ const plugins = require('../utils/plugins');
 const isProduction = require('../utils/env');
 
 module.exports = (gulp, config) => {
+
+  const shouldBeOptimized = (file) => {
+    const basename = path.basename(file.path, path.extname(file.path));
+    return /^(_)/.exec(basename) === null && isProduction;
+  }
+
   const images = () => {
     return src(config.src)
       .pipe(plugins.newer(config.dest))
       .pipe(
         plugins.if(
-          isProduction,
+          shouldBeOptimized,
           plugins.imagemin([
             // GIF
             plugins.imagemin.gifsicle(),
@@ -51,6 +58,13 @@ module.exports = (gulp, config) => {
           ])
         )
       )
+      // Remove underscored svg files
+      .pipe(plugins.rename((path) => {
+        if(path.extname !== '.svg') {
+          return;
+        }
+        path.basename = path.basename.replace(/^(_)/, '');
+      }))
       .pipe(dest(config.dest));
   };
 
