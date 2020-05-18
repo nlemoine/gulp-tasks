@@ -27,6 +27,7 @@ module.exports = (gulp, config) => {
                 multi(),
                 resolve({
                   browser: true,
+                  preferBuiltins: false,
                 }),
                 commonjs(),
                 babel({
