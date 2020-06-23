@@ -12,6 +12,7 @@ module.exports = (gulp, config) => {
           const converter = new TailwindExportConfig({
             config: file.path,
             format: 'scss',
+            'quoted-keys': true,
           });
           const converted = converter.convert();
           const newFile = new vinyl({

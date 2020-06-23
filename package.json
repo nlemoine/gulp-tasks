@@ -82,7 +82,7 @@
     "rollup-plugin-sizes": "^1.0.2",
     "sass": "^1.26.8",
     "strip-color": "^0.1.0",
-    "tailwindcss-export-config": "https://github.com/tylerwiegand/tailwindcss-export-config#master",
+    "tailwindcss-export-config": "^2.1.0",
     "through2": "^3.0.1",
     "vinyl-buffer": "^1.0.1",
     "vinyl-paths": "^3.0.1",
