@@ -12,6 +12,9 @@ module.exports.getDestPaths = getDestPaths;
 
 module.exports = (gulp, config) => {
   getEnabledTasks(config).forEach((t) => {
+    if (!t.enabled) {
+      return;
+    }
     require(`./src/${t.task}`)(gulp, t);
   });
   require('./src/clean')(gulp, config);

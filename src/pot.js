@@ -76,9 +76,7 @@ module.exports = (gulp, config) => {
         )
         .pipe(dest(config.cachePath))
         .pipe(filterTwig.restore)
-        .pipe(
-          plugins.wpPot(config.options)
-        )
+        .pipe(plugins.wpPot(config.options))
         .pipe(gulp.dest(`${config.dest}/${config.options.domain}.pot`))
         .pipe(
           through.obj((chunk, enc, cb) => {
