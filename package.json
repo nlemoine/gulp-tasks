@@ -77,7 +77,7 @@
     "postcss-url": "^8.0.0",
     "rollup": "^2.18.1",
     "rollup-plugin-analyzer": "^3.2.3",
-    "rollup-plugin-filesize": "^9.0.1",
+    "rollup-plugin-filesize": "^9.0.2",
     "rollup-plugin-multi-input": "^1.1.1",
     "rollup-plugin-sizes": "^1.0.2",
     "sass": "^1.26.9",
