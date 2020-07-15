@@ -14,50 +14,51 @@ module.exports = (gulp, config) => {
     return /^(_)/.exec(basename) === null && isProduction;
   };
 
+  let defaultPlugins = [
+    // GIF
+    plugins.imagemin.gifsicle(),
+    // JPEG
+    mozjpeg({
+      quality: 75,
+    }),
+    // PNG
+    pngquant({
+      quality: [0.5, 0.5],
+    }),
+    // SVG
+    plugins.imagemin.svgo({
+      plugins: [
+        {
+          doctypeDeclaration: false,
+        },
+        {
+          namespaceIDs: false,
+        },
+        {
+          xmlDeclaration: false,
+        },
+        {
+          removeViewBox: false,
+        },
+        {
+          cleanupIDs: {
+            remove: true,
+            minify: false,
+          },
+        },
+      ],
+    }),
+  ];
+
+  if (config.hasOwnProperty('plugins')) {
+    defaultPlugins = config.plugins;
+  }
+
   const images = () => {
     return (
       src(config.src)
         .pipe(plugins.newer(config.dest))
-        .pipe(
-          plugins.if(
-            shouldBeOptimized,
-            plugins.imagemin([
-              // GIF
-              plugins.imagemin.gifsicle(),
-              // JPEG
-              mozjpeg({
-                quality: 50,
-              }),
-              // PNG
-              pngquant({
-                quality: [0.5, 0.5],
-              }),
-              // SVG
-              plugins.imagemin.svgo({
-                plugins: [
-                  {
-                    doctypeDeclaration: false,
-                  },
-                  {
-                    namespaceIDs: false,
-                  },
-                  {
-                    xmlDeclaration: false,
-                  },
-                  {
-                    removeViewBox: false,
-                  },
-                  {
-                    cleanupIDs: {
-                      remove: true,
-                      minify: false,
-                    },
-                  },
-                ],
-              }),
-            ])
-          )
-        )
+        .pipe(plugins.if(shouldBeOptimized, plugins.imagemin(defaultPlugins)))
         // Remove underscored svg files
         .pipe(
           plugins.rename((path) => {

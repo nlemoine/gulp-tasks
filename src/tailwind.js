@@ -6,7 +6,6 @@ const path = require('path');
 const resolveConfig = require('tailwindcss/resolveConfig');
 
 module.exports = (gulp, config) => {
-
   const tailwind = () => {
     const stream = src(config.src);
 
