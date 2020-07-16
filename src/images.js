@@ -4,6 +4,7 @@ const path = require('path');
 const pngquant = require('imagemin-pngquant');
 const zopfli = require('imagemin-zopfli');
 const mozjpeg = require('imagemin-mozjpeg');
+const jpegtran = require('imagemin-jpegtran');
 
 const plugins = require('../utils/plugins');
 const isProduction = require('../utils/env');
@@ -19,7 +20,7 @@ module.exports = (gulp, config) => {
     plugins.imagemin.gifsicle(),
     // JPEG
     mozjpeg({
-      quality: 75,
+      quality: 100,
     }),
     // PNG
     pngquant({
@@ -28,18 +29,22 @@ module.exports = (gulp, config) => {
     // SVG
     plugins.imagemin.svgo({
       plugins: [
-        {
-          doctypeDeclaration: false,
-        },
-        {
-          namespaceIDs: false,
-        },
-        {
-          xmlDeclaration: false,
-        },
-        {
-          removeViewBox: false,
-        },
+        { cleanupAttrs: true },
+        { removeDoctype: true },
+        { removeXMLProcInst: true },
+        { removeComments: true },
+        { removeMetadata: true },
+        { removeUselessDefs: true },
+        { removeEditorsNSData: true },
+        { removeEmptyAttrs: true },
+        { removeHiddenElems: false },
+        { removeEmptyText: true },
+        { removeEmptyContainers: true },
+        { cleanupEnableBackground: true },
+        { removeViewBox: true },
+        { cleanupIDs: false },
+        { convertStyleToAttrs: true },
+        { removeViewBox: false },
         {
           cleanupIDs: {
             remove: true,
