@@ -25,7 +25,7 @@
     "@rollup/plugin-multi-entry": "^3.0.1",
     "@rollup/plugin-node-resolve": "^8.4.0",
     "autoprefixer": "^9.8.5",
-    "browser-sync": "^2.26.7",
+    "browser-sync": "^2.26.10",
     "browserslist": "^4.13.0",
     "command-exists": "^1.2.9",
     "cssnano": "^4.1.10",
