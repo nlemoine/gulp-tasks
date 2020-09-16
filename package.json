@@ -88,7 +88,7 @@
     "through2": "^4.0.2",
     "vinyl-buffer": "^1.0.1",
     "vinyl-paths": "^3.0.1",
-    "yargs": "^15.4.1"
+    "yargs": "^16.0.3"
   },
   "devDependencies": {
     "prettier": "^2.1.2"
