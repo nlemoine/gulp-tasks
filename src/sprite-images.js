@@ -13,6 +13,7 @@ const spriteImages = (config) => {
   return src(config.src)
     .pipe(spritesmith(config.options))
     .pipe(filterPngs)
+    .pipe(buffer())
     .pipe(
       plugins.if(
         isProduction,
