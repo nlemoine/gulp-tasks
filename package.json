@@ -82,7 +82,7 @@
     "rollup-plugin-filesize": "^9.0.2",
     "rollup-plugin-multi-input": "^1.1.1",
     "rollup-plugin-sizes": "^1.0.3",
-    "sass": "^1.26.10",
+    "sass": "^1.26.11",
     "strip-color": "^0.1.0",
     "tailwindcss-export-config": "^2.2.1",
     "through2": "^4.0.2",
