@@ -19,6 +19,8 @@ module.exports = (gulp, config) => {
   });
   require('./src/clean')(gulp, config);
   require('./src/build')(gulp, config);
+  require('./src/gzip')(gulp, config);
+  require('./src/brotli')(gulp, config);
   require('./src/rev')(gulp, config);
   require('./src/serve')(gulp, config);
   require('./src/watch')(gulp, config);
