@@ -38,9 +38,11 @@ const replaceRevUrls = () => {
       files.forEach((f) => {
         const file = f.file;
         if (path.extname(file.revOrigPath) !== '.css') {
+          self.push(file);
           return;
         }
         if (!file.contents) {
+          self.push(file);
           return;
         }
 
