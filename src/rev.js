@@ -1,8 +1,71 @@
 const { src, dest } = require('gulp');
 const vinylPaths = require('vinyl-paths');
 const del = require('del');
+const path = require('path');
+const through = require('through2');
+const revisionHash = require('rev-hash');
 const { getRevisionedTasks, getDestPaths } = require('../utils/tasks');
 const plugins = require('../utils/plugins');
+
+const replaceRevUrls = () => {
+  const files = [];
+
+  return through.obj(
+    (file, enc, cb) => {
+      const basePath = file.revOrigBase;
+      const replace = `^${basePath}/`;
+      const replaceRegex = new RegExp(replace, 'gm');
+
+      if (file.path && file.revOrigPath) {
+        files.push({
+          originalPath: file.revOrigPath.replace(replaceRegex, ''),
+          hashedPath: file.path.replace(replaceRegex, ''),
+          file: file,
+        });
+      }
+
+      cb();
+    },
+    function (cb) {
+      var self = this;
+
+      const longestFirst = files.slice().sort((a, b) => {
+        if (a.originalPath.length > b.originalPath.length) return -1;
+        if (a.originalPath.length < b.originalPath.length) return 1;
+        return 0;
+      });
+
+      files.forEach((f) => {
+        const file = f.file;
+        if (path.extname(file.revOrigPath) !== '.css') {
+          return;
+        }
+        if (!file.contents) {
+          return;
+        }
+
+        let contents = file.contents.toString();
+        longestFirst.forEach((_f) => {
+          contents = contents.replace(
+            new RegExp(_f.originalPath, 'g'),
+            _f.hashedPath
+          );
+        });
+
+        file.contents = new Buffer.from(contents);
+        const hash = (file.revHash = revisionHash(contents));
+        const ext = path.extname(file.path);
+        const filename =
+          path.basename(file.revOrigPath, ext) + '-' + hash + ext;
+        file.path = path.join(path.dirname(file.path), filename);
+
+        self.push(file);
+      });
+
+      cb();
+    }
+  );
+};
 
 module.exports = (gulp, config) => {
   // Do not include reved files, md5/hex/10
@@ -40,7 +103,8 @@ module.exports = (gulp, config) => {
           })
         )
         .pipe(plugins.rev())
-        .pipe(plugins.revCssUrl())
+        // .pipe(plugins.revCssUrl())
+        .pipe(replaceRevUrls())
         .pipe(dest(config.buildPath))
         .pipe(plugins.rev.manifest('manifest.json'))
         .pipe(dest(config.buildPath))
