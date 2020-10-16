@@ -26,6 +26,7 @@ module.exports = (gulp, config) => {
                 config: file.path,
                 format: 'scss',
                 quotedKeys: true,
+                preserveKeys: ['colors', 'screens', 'spacing'],
               });
               const converted = converter.convert();
               const transformedFile = new vinyl({
