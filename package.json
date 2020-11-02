@@ -23,7 +23,7 @@
     "@rollup/plugin-babel": "^5.2.1",
     "@rollup/plugin-commonjs": "^15.1.0",
     "@rollup/plugin-multi-entry": "^4.0.0",
-    "@rollup/plugin-node-resolve": "^9.0.0",
+    "@rollup/plugin-node-resolve": "^10.0.0",
     "autoprefixer": "^9.8.6",
     "browser-sync": "^2.26.12",
     "browserslist": "^4.14.5",
