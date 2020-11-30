@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/nlemoine/gulp-tasks#readme",
   "dependencies": {
-    "@babel/core": "^7.12.3",
+    "@babel/core": "^7.12.9",
     "@babel/preset-env": "^7.12.1",
     "@fullhuman/postcss-purgecss": "^3.0.0",
     "@rollup/plugin-babel": "^5.2.1",
