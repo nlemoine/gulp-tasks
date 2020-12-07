@@ -91,7 +91,7 @@
     "through2": "^4.0.2",
     "vinyl-buffer": "^1.0.1",
     "vinyl-paths": "^3.0.1",
-    "yargs": "^16.1.1",
+    "yargs": "^16.2.0",
     "zlib": "^1.0.5"
   },
   "devDependencies": {
