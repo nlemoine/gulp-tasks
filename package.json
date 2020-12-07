@@ -82,7 +82,7 @@
     "rev-hash": "^3.0.0",
     "rollup": "^2.34.2",
     "rollup-plugin-analyzer": "^3.3.0",
-    "rollup-plugin-filesize": "^9.0.2",
+    "rollup-plugin-filesize": "^9.1.0",
     "rollup-plugin-multi-input": "^1.1.1",
     "rollup-plugin-sizes": "^1.0.3",
     "sass": "^1.30.0",
