@@ -80,7 +80,7 @@
     "postcss": "^8.2.4",
     "postcss-url": "^10.1.1",
     "rev-hash": "^3.0.0",
-    "rollup": "^2.38.0",
+    "rollup": "^2.38.5",
     "rollup-plugin-analyzer": "^4.0.0",
     "rollup-plugin-filesize": "^9.1.0",
     "rollup-plugin-multi-input": "^1.2.0",
