@@ -16,7 +16,7 @@ const { destMemory } = require('../memory');
 
 plugins.sass.compiler = sass;
 
-module.exports = (gulp, config, mem) => {
+module.exports = (gulp, config, mainConfig) => {
   config = {
     options: {},
     ...config,
@@ -159,7 +159,7 @@ module.exports = (gulp, config, mem) => {
           )
         )
         .pipe(plugins.if(!isProduction, plugins.sourcemaps.write('.')))
-        .pipe(bs.active ? destMemory(config.dest) : dest(config.dest))
+        .pipe(bs.active && mainConfig.inMemory ? destMemory(config.dest) : dest(config.dest))
     );
   };
   gulp.task(config.task, styles);

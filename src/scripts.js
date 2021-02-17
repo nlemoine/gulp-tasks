@@ -14,7 +14,7 @@ const plugins = require('../utils/plugins');
 const isProduction = require('../utils/env');
 const { destMemory } = require('../memory');
 
-module.exports = (gulp, config) => {
+module.exports = (gulp, config, mainConfig) => {
   const scripts = () => {
     return (
       src(config.src)
@@ -77,7 +77,7 @@ module.exports = (gulp, config) => {
           )
         )
         .pipe(plugins.if(!isProduction, plugins.sourcemaps.write('.')))
-        .pipe(bs.active ? destMemory(config.dest) : dest(config.dest))
+        .pipe(bs.active && mainConfig.inMemory ? destMemory(config.dest) : dest(config.dest))
     );
   };
 

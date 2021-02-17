@@ -11,11 +11,17 @@ module.exports.getBuildTasks = getBuildTasks;
 module.exports.getDestPaths = getDestPaths;
 
 module.exports = (gulp, config) => {
+
+  config = {
+    inMemory: true,
+    ...config,
+  };
+
   getEnabledTasks(config).forEach((t) => {
     if (!t.enabled) {
       return;
     }
-    require(`./src/${t.task}`)(gulp, t);
+    require(`./src/${t.task}`)(gulp, t, config);
   });
   require('./src/clean')(gulp, config);
   require('./src/build')(gulp, config);

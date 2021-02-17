@@ -12,13 +12,19 @@ module.exports = (gulp, config) => {
     let bsConfig = {
       open: false,
       minify: true,
-      middleware: memoryMiddleware({
-        publicPath: config.publicPath || 'web',
-        headers: {
-          'X-Served-From': 'memory',
-        },
-      }),
     };
+
+    if(config.inMemory) {
+      bsConfig = {
+        ...bsConfig,
+        middleware: memoryMiddleware({
+          publicPath: config.publicPath || 'web',
+          headers: {
+            'X-Served-From': 'memory',
+          },
+        }),
+      }
+    }
 
     // Custom proxy URL
     if (config.hasOwnProperty('proxyUrl') && config.proxyUrl) {
