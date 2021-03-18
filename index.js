@@ -11,7 +11,6 @@ module.exports.getBuildTasks = getBuildTasks;
 module.exports.getDestPaths = getDestPaths;
 
 module.exports = (gulp, config) => {
-
   config = {
     inMemory: true,
     ...config,

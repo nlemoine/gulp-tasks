@@ -159,7 +159,11 @@ module.exports = (gulp, config, mainConfig) => {
           )
         )
         .pipe(plugins.if(!isProduction, plugins.sourcemaps.write('.')))
-        .pipe(bs.active && mainConfig.inMemory ? destMemory(config.dest) : dest(config.dest))
+        .pipe(
+          bs.active && mainConfig.inMemory
+            ? destMemory(config.dest)
+            : dest(config.dest)
+        )
     );
   };
   gulp.task(config.task, styles);

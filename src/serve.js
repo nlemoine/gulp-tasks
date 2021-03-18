@@ -4,6 +4,9 @@ const url = require('url');
 const { execSync } = require('child_process');
 const getUrls = require('get-urls');
 const stripColor = require('strip-color');
+const os = require('os');
+const fs = require('fs');
+const path = require('path');
 const commandExistsSync = require('command-exists').sync;
 const { memoryMiddleware } = require('../memory');
 
@@ -14,7 +17,7 @@ module.exports = (gulp, config) => {
       minify: true,
     };
 
-    if(config.inMemory) {
+    if (config.inMemory) {
       bsConfig = {
         ...bsConfig,
         middleware: memoryMiddleware({
@@ -23,7 +26,7 @@ module.exports = (gulp, config) => {
             'X-Served-From': 'memory',
           },
         }),
-      }
+      };
     }
 
     // Custom proxy URL
@@ -54,6 +57,16 @@ module.exports = (gulp, config) => {
             },
           };
         }
+      }
+
+      const symfonyPfx = path.join(os.homedir(), '.symfony/certs/default.p12');
+      if (fs.existsSync(symfonyPfx)) {
+        bsConfig = {
+          ...bsConfig,
+          https: {
+            pfx: symfonyPfx,
+          },
+        };
       }
     }
 
