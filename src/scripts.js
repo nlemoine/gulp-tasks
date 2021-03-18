@@ -8,7 +8,6 @@ const filesize = require('rollup-plugin-filesize');
 const sizes = require('rollup-plugin-sizes');
 const analyze = require('rollup-plugin-analyzer');
 const multi = require('@rollup/plugin-multi-entry');
-const bs = require('browser-sync');
 
 const plugins = require('../utils/plugins');
 const isProduction = require('../utils/env');
@@ -77,11 +76,7 @@ module.exports = (gulp, config, mainConfig) => {
           )
         )
         .pipe(plugins.if(!isProduction, plugins.sourcemaps.write('.')))
-        .pipe(
-          bs.active && mainConfig.inMemory
-            ? destMemory(config.dest)
-            : dest(config.dest)
-        )
+        .pipe(mainConfig.inMemory ? destMemory(config.dest) : dest(config.dest))
     );
   };
 

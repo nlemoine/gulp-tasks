@@ -5,6 +5,8 @@ const {
   getDestPaths,
 } = require('./utils/tasks');
 
+const argv = require('yargs/yargs')(process.argv.slice(2)).argv;
+
 module.exports.getEnabledTasks = getEnabledTasks;
 module.exports.getRevisionedTasks = getRevisionedTasks;
 module.exports.getBuildTasks = getBuildTasks;
@@ -12,7 +14,7 @@ module.exports.getDestPaths = getDestPaths;
 
 module.exports = (gulp, config) => {
   config = {
-    inMemory: true,
+    inMemory: argv.inMemory || false,
     ...config,
   };
 
