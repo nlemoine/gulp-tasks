@@ -34,7 +34,7 @@
     "fibers": "^5.0.0",
     "get-urls": "^10.0.0",
     "gulp": "^4.0.2",
-    "gulp-append-prepend": "^1.0.8",
+    "gulp-append-prepend": "^1.0.9",
     "gulp-better-rollup": "^4.0.1",
     "gulp-brotli": "^3.0.0",
     "gulp-clone": "^2.0.1",
