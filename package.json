@@ -46,7 +46,7 @@
     "gulp-imagemin": "^7.1.0",
     "gulp-load-plugins": "^2.0.6",
     "gulp-mjml": "^4.0.2",
-    "gulp-modernizr": "^4.0.1",
+    "gulp-modernizr": "^4.0.2",
     "gulp-newer": "^1.4.0",
     "gulp-postcss": "^9.0.0",
     "gulp-prettier": "^3.0.0",
