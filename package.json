@@ -58,7 +58,7 @@
     "gulp-rollup": "^2.17.0",
     "gulp-rtlcss": "^1.4.1",
     "gulp-sass": "^4.1.0",
-    "gulp-size": "^3.0.0",
+    "gulp-size": "^4.0.0",
     "gulp-sourcemaps": "^3.0.0",
     "gulp-svg-sprite": "^1.5.0",
     "gulp-svgo": "^2.2.1",
