@@ -44,7 +44,7 @@
     "gulp-gzip": "^1.4.2",
     "gulp-if": "^3.0.0",
     "gulp-imagemin": "^7.1.0",
-    "gulp-load-plugins": "^2.0.6",
+    "gulp-load-plugins": "^2.0.7",
     "gulp-mjml": "^4.0.2",
     "gulp-modernizr": "^4.0.2",
     "gulp-newer": "^1.4.0",
