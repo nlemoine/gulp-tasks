@@ -5,16 +5,12 @@ const packageImporter = require('node-sass-package-importer');
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
 const lazypipe = require('lazypipe');
-const Fiber = require('fibers');
-const sass = require('sass');
+const sass = require('gulp-sass')(require('sass'));
 const purgecss = require('@fullhuman/postcss-purgecss');
-const bs = require('browser-sync');
 
 const plugins = require('../utils/plugins');
 const isProduction = require('../utils/env');
 const { destMemory } = require('../memory');
-
-plugins.sass.compiler = sass;
 
 module.exports = (gulp, config, mainConfig) => {
   config = {
@@ -85,13 +81,10 @@ module.exports = (gulp, config, mainConfig) => {
         )
         .pipe(plugins.if(!isProduction, plugins.sourcemaps.init()))
         .pipe(
-          plugins
-            .sass({
-              fiber: Fiber,
-              outputStyle: 'expanded',
-              importer: packageImporter(),
-            })
-            .on('error', plugins.sass.logError)
+          sass({
+            outputStyle: 'expanded',
+            importer: packageImporter(),
+          }).on('error', sass.logError)
         )
         // RTL CSS
         .pipe(
