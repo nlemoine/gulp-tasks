@@ -10,7 +10,6 @@ const purgecss = require('@fullhuman/postcss-purgecss');
 
 const plugins = require('../utils/plugins');
 const isProduction = require('../utils/env');
-const { destMemory } = require('../memory');
 
 module.exports = (gulp, config, mainConfig) => {
   config = {
@@ -152,7 +151,7 @@ module.exports = (gulp, config, mainConfig) => {
           )
         )
         .pipe(plugins.if(!isProduction, plugins.sourcemaps.write('.')))
-        .pipe(mainConfig.inMemory ? destMemory(config.dest) : dest(config.dest))
+        .pipe(dest(config.dest))
     );
   };
   gulp.task(config.task, styles);

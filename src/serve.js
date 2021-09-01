@@ -8,7 +8,6 @@ const os = require('os');
 const fs = require('fs');
 const path = require('path');
 const commandExistsSync = require('command-exists').sync;
-const { memoryMiddleware } = require('../memory');
 
 module.exports = (gulp, config) => {
   const serve = (done) => {
@@ -17,17 +16,17 @@ module.exports = (gulp, config) => {
       minify: true,
     };
 
-    if (config.inMemory) {
-      bsConfig = {
-        ...bsConfig,
-        middleware: memoryMiddleware({
-          publicPath: config.publicPath || 'web',
-          headers: {
-            'X-Served-From': 'memory',
-          },
-        }),
-      };
-    }
+    // if (config.inMemory) {
+    //   bsConfig = {
+    //     ...bsConfig,
+    //     middleware: memoryMiddleware({
+    //       publicPath: config.publicPath || 'web',
+    //       headers: {
+    //         'X-Served-From': 'memory',
+    //       },
+    //     }),
+    //   };
+    // }
 
     // Custom proxy URL
     if (config.hasOwnProperty('proxyUrl') && config.proxyUrl) {
