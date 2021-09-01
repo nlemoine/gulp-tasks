@@ -95,7 +95,7 @@
     "vinyl-named": "^1.1.0",
     "vinyl-paths": "^3.0.1",
     "webpack": "^5.51.1",
-    "webpack-stream": "github:marekdedic/webpack-stream#47609e89333a95fa699910e1ec04dc52ecd17096",
+    "webpack-stream": "^7.0.0",
     "yargs": "^17.1.1",
     "zlib": "^1.0.5"
   },
