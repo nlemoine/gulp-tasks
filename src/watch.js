@@ -52,5 +52,5 @@ module.exports = (gulp, config) => {
     done();
   };
 
-  gulp.task('watch', series(watchTask, 'serve');
+  gulp.task('watch', watchTask);
 };
