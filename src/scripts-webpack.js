@@ -13,7 +13,7 @@ module.exports = (gulp, config, mainConfig) => {
     restore: true,
   });
 
-  const scripts = () => {
+  return () => {
     return (
       src(config.src)
       .pipe(named())
@@ -102,6 +102,4 @@ module.exports = (gulp, config, mainConfig) => {
       .pipe(dest(config.dest))
     );
   };
-
-  gulp.task(config.task, scripts);
 };

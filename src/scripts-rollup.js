@@ -15,7 +15,7 @@ const plugins = require('../utils/plugins');
 const isProduction = require('../utils/env');
 
 module.exports = (gulp, config, mainConfig) => {
-  const scripts = () => {
+  return () => {
     return (
       src(config.src)
         .pipe(plugins.sourcemaps.init())
@@ -86,6 +86,4 @@ module.exports = (gulp, config, mainConfig) => {
         .pipe(dest(config.dest))
     );
   };
-
-  gulp.task(config.task, scripts);
 };
