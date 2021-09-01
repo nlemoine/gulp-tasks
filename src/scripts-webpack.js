@@ -76,6 +76,7 @@ module.exports = (gulp, config, mainConfig) => {
   return () => {
     return (
       src(config.src)
+      .pipe(plugins.changedInPlace({ firstPass: true }))
       .pipe(named())
       .pipe(webpack(webpackConfig, compiler))
       .pipe(plugins.if(isProduction, plugins.prettier()))

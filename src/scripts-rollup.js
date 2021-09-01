@@ -18,6 +18,7 @@ module.exports = (gulp, config, mainConfig) => {
   return () => {
     return (
       src(config.src)
+        .pipe(plugins.changedInPlace({ firstPass: true }))
         .pipe(plugins.sourcemaps.init())
         .pipe(
           betterRollup(

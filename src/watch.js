@@ -38,9 +38,7 @@ module.exports = (gulp, config) => {
         cb();
       };
 
-      watch(src, {
-        ignoreInitial: false,
-      }, series(taskName, reload));
+      watch(src, series(taskName, reload));
     });
 
     if (config.hasOwnProperty('viewsSrc')) {
@@ -54,5 +52,5 @@ module.exports = (gulp, config) => {
     done();
   };
 
-  gulp.task('default', watchTask);
+  gulp.task('watch', series(watchTask, 'serve');
 };

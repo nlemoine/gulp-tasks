@@ -26,4 +26,5 @@ module.exports = (gulp, config) => {
   require('./src/rev')(gulp, config);
   require('./src/serve')(gulp, config);
   require('./src/watch')(gulp, config);
+  require('./src/default')(gulp);
 };
