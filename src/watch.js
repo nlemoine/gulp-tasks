@@ -2,9 +2,10 @@ const { getEnabledTasks } = require('../utils/tasks');
 const fs = require('fs');
 const path = require('path');
 const browserSync = require('browser-sync');
+const { watch, series } = require('gulp');
 
 module.exports = (gulp, config) => {
-  const watch = (done) => {
+  const watchTask = (done) => {
     const tasks = getEnabledTasks(config);
 
     Object.values(tasks).forEach((task) => {
@@ -37,7 +38,9 @@ module.exports = (gulp, config) => {
         cb();
       };
 
-      gulp.watch(src, gulp.series(taskName, reload));
+      watch(src, {
+        ignoreInitial: false,
+      }, series(taskName, reload));
     });
 
     if (config.hasOwnProperty('viewsSrc')) {
@@ -45,11 +48,11 @@ module.exports = (gulp, config) => {
         browserSync.reload();
         cb();
       };
-      gulp.watch(config.viewsSrc, reloadViews);
+      watch(config.viewsSrc, reloadViews);
     }
 
     done();
   };
 
-  gulp.task('watch', watch);
+  gulp.task('default', watchTask);
 };
