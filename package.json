@@ -29,7 +29,7 @@
     "autoprefixer": "^10.3.3",
     "babel-loader": "^8.2.2",
     "browser-sync": "^2.27.5",
-    "browserslist": "^4.16.8",
+    "browserslist": "^4.17.0",
     "command-exists": "^1.2.9",
     "cssnano": "^5.0.8",
     "del": "^6.0.0",
