@@ -72,7 +72,7 @@ module.exports = (gulp, config, mainConfig) => {
   const styles = () => {
     return (
       src(config.src)
-        .pipe(plugins.changedInPlace({ firstPass: true }))
+        // .pipe(plugins.changedInPlace({ firstPass: true }))
         .pipe(
           plugins.if(
             !isProduction,
