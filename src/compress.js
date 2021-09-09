@@ -7,11 +7,18 @@ module.exports = (gulp, config) => {
     files.push(`${config.buildPath}/**/*.${ext}`)
   );
 
-  const brotli = () => {
+  const compress = () => {
     return src(files)
-      .pipe(plugins.brotli.compress())
+      .pipe(plugins.webCompress({
+        gzipOptions: {
+          level: 9
+        },
+        brotliOptions: {
+          quality: 11
+        }
+      }))
       .pipe(dest(config.buildPath));
   };
 
-  gulp.task('brotli', brotli);
+  gulp.task('compress', compress);
 };
