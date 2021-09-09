@@ -69,7 +69,6 @@
     "gulp-terser": "^2.0.1",
     "gulp-uglify": "^3.0.2",
     "gulp-watch": "^5.0.1",
-    "gulp-web-compress": "^0.4.1",
     "gulp-wp-pot": "^2.5.0",
     "gulp.spritesmith": "^6.12.1",
     "imagemin-giflossy": "^5.1.10",

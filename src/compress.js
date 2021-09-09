@@ -1,5 +1,6 @@
-const { src, dest } = require('gulp');
+const { src, dest, series } = require('gulp');
 const plugins = require('../utils/plugins');
+const zlib = require('zlib');
 
 module.exports = (gulp, config) => {
   const files = [];
@@ -7,18 +8,25 @@ module.exports = (gulp, config) => {
     files.push(`${config.buildPath}/**/*.${ext}`)
   );
 
-  const compress = () => {
+  const gzip = () => {
     return src(files)
-      .pipe(plugins.webCompress({
+      .pipe(plugins.gzip({
         gzipOptions: {
           level: 9
         },
-        brotliOptions: {
-          quality: 11
+      }))
+      .pipe(dest(config.buildPath));
+  };
+
+  const brotli = () => {
+    return src(files)
+      .pipe(plugins.brotli({
+        params: {
+          [zlib.constants.BROTLI_PARAM_QUALITY]: zlib.constants.BROTLI_MAX_QUALITY,
         }
       }))
       .pipe(dest(config.buildPath));
   };
 
-  gulp.task('compress', compress);
+  gulp.task('compress', series(gzip, brotli));
 };
