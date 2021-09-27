@@ -94,7 +94,7 @@
     "vinyl-buffer": "^1.0.1",
     "vinyl-named": "^1.1.0",
     "vinyl-paths": "^3.0.1",
-    "webpack": "^5.53.0",
+    "webpack": "^5.54.0",
     "webpack-stream": "^7.0.0",
     "yargs": "^17.2.0",
     "zlib": "^1.0.5"
