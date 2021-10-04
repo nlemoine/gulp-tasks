@@ -1,10 +1,9 @@
 import gulp from 'gulp';
 import path from 'node:path';
 
-import imagemin from 'gulp-imagemin';
+import imagemin, {gifsicle, mozjpeg, optipng, svgo} from 'gulp-imagemin';
 import pngquant from 'imagemin-pngquant';
 import zopfli from 'imagemin-zopfli';
-import mozjpeg from 'imagemin-mozjpeg';
 import jpegtran from 'imagemin-jpegtran';
 import gulpif from 'gulp-if';
 import rename from 'gulp-rename';
@@ -21,9 +20,9 @@ export default (config) => {
 
   let defaultPlugins = [
     // GIF
-    imagemin.gifsicle(),
+    gifsicle(),
     // JPEG
-    imagemin.mozjpeg({
+    mozjpeg({
       quality: 100,
     }),
     // PNG
@@ -31,30 +30,23 @@ export default (config) => {
       quality: [0.5, 0.5],
     }),
     // SVG
-    imagemin.svgo({
+    svgo({
       plugins: [
-        { cleanupAttrs: true },
-        { removeDoctype: true },
-        { removeXMLProcInst: true },
-        { removeComments: true },
-        { removeMetadata: true },
-        { removeUselessDefs: true },
-        { removeEditorsNSData: true },
-        { removeEmptyAttrs: true },
-        { removeHiddenElems: false },
-        { removeEmptyText: true },
-        { removeEmptyContainers: true },
-        { cleanupEnableBackground: true },
-        { removeViewBox: true },
-        { cleanupIDs: false },
-        { convertStyleToAttrs: true },
-        { removeViewBox: false },
         {
-          cleanupIDs: {
-            remove: true,
-            minify: false,
-          },
-        },
+          name: 'preset-default',
+          params: {
+            overrides: {
+              removeXMLNS: true,
+              removeDimensions: true,
+              cleanupIDs: {
+                remove: true,
+                minify: false,
+              },
+              convertStyleToAttrs: true,
+              removeViewBox: false,
+            }
+          }
+        }
       ],
     }),
   ];
