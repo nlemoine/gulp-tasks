@@ -1,5 +1,4 @@
-const path = require('path');
-const { gulp, parallel } = require('gulp');
+import path from 'path';
 
 function getEnabledTasks(config) {
   return Object.values(config).filter((task) => {
@@ -59,9 +58,4 @@ function getDestPaths(config, tasks = false) {
   return dests;
 }
 
-module.exports = {
-  getEnabledTasks: getEnabledTasks,
-  getBuildTasks: getBuildTasks,
-  getRevisionedTasks: getRevisionedTasks,
-  getDestPaths: getDestPaths,
-};
+export { getEnabledTasks, getBuildTasks, getRevisionedTasks, getDestPaths };

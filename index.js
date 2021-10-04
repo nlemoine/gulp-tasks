@@ -1,29 +1,38 @@
-const {
+import {
   getEnabledTasks,
   getRevisionedTasks,
   getBuildTasks,
   getDestPaths,
-} = require('./utils/tasks');
+} from './utils/tasks.js';
+import clean from './tasks/clean.js';
+import compress from './tasks/compress.js';
+import serve from './tasks/serve.js';
+import rev from './tasks/rev.js';
+import watch from './tasks/watch.js';
 
-const argv = require('yargs/yargs')(process.argv.slice(2)).argv;
+export { getEnabledTasks, getRevisionedTasks, getBuildTasks, getDestPaths };
 
-module.exports.getEnabledTasks = getEnabledTasks;
-module.exports.getRevisionedTasks = getRevisionedTasks;
-module.exports.getBuildTasks = getBuildTasks;
-module.exports.getDestPaths = getDestPaths;
+export default async (g, config) => {
+  const enabledTasks = getEnabledTasks(config);
 
-module.exports = (gulp, config) => {
-  getEnabledTasks(config).forEach((t) => {
-    if (!t.enabled) {
-      return;
+  for (const t of enabledTasks) {
+    let task = null;
+    if(t.task === 'scripts') {
+      const bundler = t.hasOwnProperty('bundler') ? t.bundler : 'rollup';
+      const { default: taskFn } = await import(`./tasks/scripts-${bundler}.js`);
+      task = taskFn;
+    } else {
+      const { default: taskFn } = await import(`./tasks/${t.task}.js`);
+      task = taskFn;
     }
-    require(`./src/${t.task}`)(gulp, t, config);
-  });
-  require('./src/clean')(gulp, config);
-  require('./src/build')(gulp, config);
-  require('./src/compress')(gulp, config);
-  require('./src/rev')(gulp, config);
-  require('./src/serve')(gulp, config);
-  require('./src/watch')(gulp, config);
-  require('./src/default')(gulp);
+    g.task(t.task, () => task(t, config));
+  }
+
+  g.task('compress', () => compress(config));
+  g.task('clean', () => clean(config));
+  g.task('build', g.series(...getBuildTasks(config)));
+  g.task('rev', g.series('clean', 'build', () => rev(config)));
+  g.task('serve', serve(config));
+  g.task('watch', watch(config, g));
+  g.task('default', g.series('watch', 'serve'));
 };
