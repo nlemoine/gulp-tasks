@@ -1,14 +1,14 @@
-import { getEnabledTasks } from '../utils/tasks.js';
+import { getActiveTasks } from '../utils/tasks.js';
 import fs from 'node:fs';
 import path from 'node:path';
 import browserSync from 'browser-sync';
 import gulp from 'gulp';
 
-const { watch, series } = gulp;
+const { watch } = gulp;
 
 export default (config, g) => {
   return (done) => {
-    const tasks = getEnabledTasks(config);
+    const tasks = getActiveTasks(config.tasks);
 
     Object.values(tasks).forEach((task) => {
       if (!task.hasOwnProperty('behavior')) {

@@ -1,7 +1,7 @@
 import gulp from 'gulp';
 import path from 'node:path';
 
-import imagemin, {gifsicle, mozjpeg, optipng, svgo} from 'gulp-imagemin';
+import imagemin, { gifsicle, mozjpeg, optipng, svgo } from 'gulp-imagemin';
 import pngquant from 'imagemin-pngquant';
 import zopfli from 'imagemin-zopfli';
 import jpegtran from 'imagemin-jpegtran';
@@ -36,17 +36,21 @@ export default (config) => {
           name: 'preset-default',
           params: {
             overrides: {
-              removeXMLNS: true,
-              removeDimensions: true,
-              cleanupIDs: {
-                remove: true,
-                minify: false,
-              },
-              convertStyleToAttrs: true,
               removeViewBox: false,
-            }
-          }
-        }
+            },
+          },
+        },
+        'removeOffCanvasPaths',
+        'sortAttrs',
+        'convertStyleToAttrs',
+        'removeStyleElement',
+        {
+          name: 'removeAttrs',
+          params: {
+            attrs: 'data-name',
+            preserveCurrentColor: true,
+          },
+        },
       ],
     }),
   ];

@@ -1,5 +1,5 @@
 import {
-  getEnabledTasks,
+  getActiveTasks,
   getRevisionedTasks,
   getBuildTasks,
   getDestPaths,
@@ -10,14 +10,17 @@ import serve from './tasks/serve.js';
 import rev from './tasks/rev.js';
 import watch from './tasks/watch.js';
 
-export { getEnabledTasks, getRevisionedTasks, getBuildTasks, getDestPaths };
+export { getActiveTasks, getRevisionedTasks, getBuildTasks, getDestPaths };
 
 export default async (g, config) => {
-  const enabledTasks = getEnabledTasks(config);
+  if (!config.hasOwnProperty('tasks')) {
+    throw new Error('No tasks defined in config');
+  }
+  const activeTasks = getActiveTasks(config.tasks);
 
-  for (const t of enabledTasks) {
+  for (const t of activeTasks) {
     let task = null;
-    if(t.task === 'scripts') {
+    if (t.task === 'scripts') {
       const bundler = t.hasOwnProperty('bundler') ? t.bundler : 'rollup';
       const { default: taskFn } = await import(`./tasks/scripts-${bundler}.js`);
       task = taskFn;
@@ -30,8 +33,11 @@ export default async (g, config) => {
 
   g.task('compress', () => compress(config));
   g.task('clean', () => clean(config));
-  g.task('build', g.series(...getBuildTasks(config)));
-  g.task('rev', g.series('clean', 'build', () => rev(config)));
+  g.task('build', g.series(...getBuildTasks(config.tasks)));
+  g.task(
+    'rev',
+    g.series('clean', 'build', () => rev(config))
+  );
   g.task('serve', serve(config));
   g.task('watch', watch(config, g));
   g.task('default', g.series('watch', 'serve'));

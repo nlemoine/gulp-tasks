@@ -81,30 +81,32 @@ export default (config) => {
   });
 
   // Get enabled tasks
-  const tasks = getRevisionedTasks(config);
+  const tasks = getRevisionedTasks(config.tasks);
   const dests = getDestPaths(tasks);
 
-  return src(dests, {
-    base: config.buildPath,
-  })
-    .pipe(filterReved)
-    // Delete .min files
-    .pipe(filterMin)
-    .pipe(vinylPaths(del))
-    .pipe(filterMin.restore)
-    // Rename .min files
-    .pipe(
-      rename((path) => {
-        if (!['.css', '.js'].includes(path.extname)) {
-          return;
-        }
-        path.basename = path.basename.replace(/\.min$/, '');
-      })
-    )
-    .pipe(rev())
-    // .pipe(plugins.revCssUrl())
-    .pipe(replaceRevUrls())
-    .pipe(dest(config.buildPath))
-    .pipe(rev.manifest('manifest.json'))
-    .pipe(dest(config.buildPath))
+  return (
+    src(dests, {
+      base: config.buildPath,
+    })
+      .pipe(filterReved)
+      // Delete .min files
+      .pipe(filterMin)
+      .pipe(vinylPaths(del))
+      .pipe(filterMin.restore)
+      // Rename .min files
+      .pipe(
+        rename((path) => {
+          if (!['.css', '.js'].includes(path.extname)) {
+            return;
+          }
+          path.basename = path.basename.replace(/\.min$/, '');
+        })
+      )
+      .pipe(rev())
+      // .pipe(plugins.revCssUrl())
+      .pipe(replaceRevUrls())
+      .pipe(dest(config.buildPath))
+      .pipe(rev.manifest('manifest.json'))
+      .pipe(dest(config.buildPath))
+  );
 };

@@ -1,25 +1,22 @@
-import path from 'path';
+import path from 'node:path';
 
-function getEnabledTasks(config) {
-  return Object.values(config).filter((task) => {
+function getActiveTasks(tasks) {
+  return tasks.filter((task) => {
     if (
       !task.hasOwnProperty('task') ||
       !task.hasOwnProperty('order') ||
-      !task.hasOwnProperty('enabled')
+      !task.hasOwnProperty('active')
     ) {
       return false;
     }
-    if (!task.enabled) {
-      return false;
-    }
-    return true;
+    return task.active;
   });
 }
 
-function getBuildTasks(config) {
-  const tasks = getEnabledTasks(config);
+function getBuildTasks(tasks) {
+  const activeTasks = getActiveTasks(tasks);
   const tasksNames = {};
-  tasks.forEach((task) => {
+  activeTasks.forEach((task) => {
     if (!Array.isArray(tasksNames[task.order])) {
       tasksNames[task.order] = [];
     }
@@ -28,9 +25,9 @@ function getBuildTasks(config) {
   return Object.values(tasksNames);
 }
 
-function getRevisionedTasks(config) {
-  const tasks = getEnabledTasks(config);
-  return Object.values(tasks).filter((task) => {
+function getRevisionedTasks(tasks) {
+  const activeTasks = getActiveTasks(tasks);
+  return activeTasks.filter((task) => {
     if (!task.hasOwnProperty('revision')) {
       return false;
     }
@@ -38,8 +35,7 @@ function getRevisionedTasks(config) {
   });
 }
 
-function getDestPaths(config, tasks = false) {
-  tasks = tasks ? tasks : getEnabledTasks(config);
+function getDestPaths(tasks) {
   const dests = [];
   tasks.forEach((task) => {
     if (!task.hasOwnProperty('dest')) {
@@ -58,4 +54,4 @@ function getDestPaths(config, tasks = false) {
   return dests;
 }
 
-export { getEnabledTasks, getBuildTasks, getRevisionedTasks, getDestPaths };
+export { getActiveTasks, getBuildTasks, getRevisionedTasks, getDestPaths };
