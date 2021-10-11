@@ -8,7 +8,6 @@ import resolveConfig from 'tailwindcss/resolveConfig.js';
 const { src, dest } = gulp;
 
 export default (config) => {
-  // return () => {
   const stream = src(config.src);
 
   let dests = config.dest;
@@ -47,8 +46,8 @@ export default (config) => {
     if (ext === '.json') {
       stream
         .pipe(
-          through.obj((file, enc, cb) => {
-            let config = require(file.path);
+          through.obj(async (file, enc, cb) => {
+            let config = await import(file.path);
             config = resolveConfig(config);
 
             const transformedFile = new vinyl({
@@ -66,5 +65,4 @@ export default (config) => {
   });
 
   return stream;
-  // };
 };
