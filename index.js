@@ -17,6 +17,9 @@ export default async (g, config) => {
     throw new Error('No tasks defined in config');
   }
   const activeTasks = getActiveTasks(config.tasks);
+  if (!activeTasks.length) {
+    throw new Error('No active tasks found');
+  }
 
   for (const t of activeTasks) {
     let task = null;
