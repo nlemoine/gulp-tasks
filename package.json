@@ -30,7 +30,7 @@
     "@rollup/plugin-commonjs": "^21.0.1",
     "@rollup/plugin-multi-entry": "^4.1.0",
     "@rollup/plugin-node-resolve": "^13.0.6",
-    "autoprefixer": "^10.3.7",
+    "autoprefixer": "^10.4.0",
     "babel-loader": "^8.2.3",
     "browser-sync": "^2.27.5",
     "browserslist": "^4.17.5",
