@@ -1,5 +1,10 @@
 import path from 'node:path';
 
+/**
+ * Get active tasks
+ * @param {Array} tasks
+ * @returns {Array}
+ */
 function getActiveTasks(tasks) {
   return tasks.filter((task) => {
     if (
@@ -13,6 +18,11 @@ function getActiveTasks(tasks) {
   });
 }
 
+/**
+ * Get build tasks
+ * @param {Array} tasks
+ * @returns {Array}
+ */
 function getBuildTasks(tasks) {
   const activeTasks = getActiveTasks(tasks);
   const tasksNames = {};
@@ -20,11 +30,16 @@ function getBuildTasks(tasks) {
     if (!Array.isArray(tasksNames[task.order])) {
       tasksNames[task.order] = [];
     }
-    tasksNames[task.order].push(task.task);
+    tasksNames[task.order].push(getTaskName(task));
   });
   return Object.values(tasksNames);
 }
 
+/**
+ * Get revisioned tasks
+ * @param {Array} tasks
+ * @returns {Array}
+ */
 function getRevisionedTasks(tasks) {
   const activeTasks = getActiveTasks(tasks);
   return activeTasks.filter((task) => {
@@ -35,6 +50,20 @@ function getRevisionedTasks(tasks) {
   });
 }
 
+/**
+ * Get task name
+ * @param {Object} task
+ * @returns {String}
+ */
+function getTaskName(task) {
+  return task.hasOwnProperty('name') ? task.name : task.task;
+}
+
+/**
+ *
+ * @param {Array} tasks
+ * @returns {Array}
+ */
 function getDestPaths(tasks) {
   const dests = [];
   tasks.forEach((task) => {
@@ -54,4 +83,10 @@ function getDestPaths(tasks) {
   return dests;
 }
 
-export { getActiveTasks, getBuildTasks, getRevisionedTasks, getDestPaths };
+export {
+  getActiveTasks,
+  getBuildTasks,
+  getRevisionedTasks,
+  getTaskName,
+  getDestPaths,
+};

@@ -2,6 +2,7 @@ import {
   getActiveTasks,
   getRevisionedTasks,
   getBuildTasks,
+  getTaskName,
   getDestPaths,
 } from './utils/tasks.js';
 import clean from './tasks/clean.js';
@@ -9,8 +10,13 @@ import compress from './tasks/compress.js';
 import serve from './tasks/serve.js';
 import rev from './tasks/rev.js';
 import watch from './tasks/watch.js';
-
-export { getActiveTasks, getRevisionedTasks, getBuildTasks, getDestPaths };
+export {
+  getActiveTasks,
+  getRevisionedTasks,
+  getBuildTasks,
+  getTaskName,
+  getDestPaths,
+};
 
 export default async (g, config) => {
   if (!config.hasOwnProperty('tasks')) {
@@ -31,7 +37,7 @@ export default async (g, config) => {
       const { default: taskFn } = await import(`./tasks/${t.task}.js`);
       task = taskFn;
     }
-    g.task(t.task, () => task(t, config));
+    g.task(getTaskName(t), () => task(t, config));
   }
 
   g.task('compress', () => compress(config));
