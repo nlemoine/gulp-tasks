@@ -9,7 +9,6 @@ import dartSass from 'sass';
 import gulpSass from 'gulp-sass';
 import purgecss from '@fullhuman/postcss-purgecss';
 
-// import plugins from '../utils/plugins';
 import rename from 'gulp-rename';
 import rtlcss from 'gulp-rtlcss';
 import postcss from 'gulp-postcss';
@@ -107,11 +106,15 @@ export default (config, mainConfig) => {
           return !!getFileOptionValue(file, 'rtl');
         }, cloneSink.tap())
       )
+      .pipe(dest(config.dest)) // Tailwind 3 needs this
       .pipe(
         postcss({
           plugins: [autoprefixer],
         })
       )
+      .on('error', (error) => {
+        console.log(error);
+      })
       // Purge CSS
       .pipe(
         gulpif(

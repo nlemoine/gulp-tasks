@@ -8,6 +8,11 @@ import resolveConfig from 'tailwindcss/resolveConfig.js';
 const { src, dest } = gulp;
 
 export default (config) => {
+  let tailwindConfig = false;
+  if (config.hasOwnProperty('config')) {
+    tailwindConfig = config.config;
+  }
+
   const stream = src(config.src);
 
   let dests = config.dest;
@@ -24,7 +29,7 @@ export default (config) => {
         .pipe(
           through.obj((file, enc, cb) => {
             const converter = new TailwindExportConfig({
-              config: file.path,
+              config: tailwindConfig ? tailwindConfig : file.path,
               format: 'scss',
               quotedKeys: true,
               preserveKeys: ['colors', 'screens', 'spacing'],
@@ -48,13 +53,13 @@ export default (config) => {
         .pipe(
           through.obj(async (file, enc, cb) => {
             let config = await import(file.path);
-            config = resolveConfig(config);
+            config = resolveConfig(tailwindConfig ? tailwindConfig : file.path);
 
             const transformedFile = new vinyl({
               path: path.basename(d),
               base: undefined,
               cwd: '',
-              contents: Buffer.from(JSON.stringify(config.theme)),
+              contents: Buffer.from(JSON.stringify(config.theme, null, 2)),
             });
 
             cb(null, transformedFile);
