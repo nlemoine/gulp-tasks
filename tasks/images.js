@@ -52,22 +52,26 @@ export const svgoDefaults = {
   ],
 }
 
-export const defaultPlugins = [
-  // GIF
-  gifsicle(),
-  // JPEG
-  mozjpeg(mozjpegDefaults),
-  // PNG
-  pngquant(pngquantDefaults),
-  // SVG
-  svgo(svgoDefaults),
-];
-
 export default (config) => {
   const shouldBeOptimized = (file) => {
     const basename = path.basename(file.path, path.extname(file.path));
     return /^(_)/.exec(basename) === null && isProduction;
   };
+
+  const svgoOptions = config.hasOwnProperty('svgoOptions') ? config.svoOptions : svgoDefaults;
+  const mozjpegOptions = config.hasOwnProperty('mozjpegOptions') ? config.mozjpegOptions : mozjpegDefaults;
+  const pngquantOptions = config.hasOwnProperty('pngquantOptions') ? config.pngquantOptions : pngquantDefaults;
+
+  const defaultPlugins = [
+      // GIF
+      gifsicle(),
+      // JPEG
+      mozjpeg(mozjpegOptions),
+      // PNG
+      pngquant(pngquantOptions),
+      // SVG
+      svgo(svgoOptions),
+  ];
 
   if (config.hasOwnProperty('plugins')) {
     defaultPlugins = config.plugins;
