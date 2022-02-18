@@ -12,56 +12,62 @@ import isProduction from '../utils/env.js';
 
 const { src, dest } = gulp;
 
+export const mozjpegDefaults = {
+  quality: 100,
+}
+
+export const pngquantDefaults = {
+  quality: [0.5, 0.5],
+}
+
+export const svgoDefaults = {
+  plugins: [
+    {
+      name: 'preset-default',
+      params: {
+        overrides: {
+          removeViewBox: false,
+          cleanupIDs: {
+            prefix: {
+              toString() {
+                this.counter = this.counter || 0;
+                return `id-${this.counter++}`;
+              }
+            }
+          }
+        },
+      },
+    },
+    'removeOffCanvasPaths',
+    'sortAttrs',
+    'convertStyleToAttrs',
+    'removeStyleElement',
+    {
+      name: 'removeAttrs',
+      params: {
+        attrs: 'data-name',
+        preserveCurrentColor: true,
+      },
+    },
+  ],
+}
+
+export const defaultPlugins = [
+  // GIF
+  gifsicle(),
+  // JPEG
+  mozjpeg(mozjpegDefaults),
+  // PNG
+  pngquant(pngquantDefaults),
+  // SVG
+  svgo(svgoDefaults),
+];
+
 export default (config) => {
   const shouldBeOptimized = (file) => {
     const basename = path.basename(file.path, path.extname(file.path));
     return /^(_)/.exec(basename) === null && isProduction;
   };
-
-  let defaultPlugins = [
-    // GIF
-    gifsicle(),
-    // JPEG
-    mozjpeg({
-      quality: 100,
-    }),
-    // PNG
-    pngquant({
-      quality: [0.5, 0.5],
-    }),
-    // SVG
-    svgo({
-      plugins: [
-        {
-          name: 'preset-default',
-          params: {
-            overrides: {
-              removeViewBox: false,
-              cleanupIDs: {
-                prefix: {
-                  toString() {
-                    this.counter = this.counter || 0;
-                    return `id-${this.counter++}`;
-                  }
-                }
-              }
-            },
-          },
-        },
-        'removeOffCanvasPaths',
-        'sortAttrs',
-        'convertStyleToAttrs',
-        'removeStyleElement',
-        {
-          name: 'removeAttrs',
-          params: {
-            attrs: 'data-name',
-            preserveCurrentColor: true,
-          },
-        },
-      ],
-    }),
-  ];
 
   if (config.hasOwnProperty('plugins')) {
     defaultPlugins = config.plugins;
