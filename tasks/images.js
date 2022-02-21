@@ -12,15 +12,15 @@ import isProduction from '../utils/env.js';
 
 const { src, dest } = gulp;
 
-export const mozjpegDefaults = {
+const mozjpegDefaults = {
   quality: 100,
-}
+};
 
-export const pngquantDefaults = {
+const pngquantDefaults = {
   quality: [0.5, 0.5],
-}
+};
 
-export const svgoDefaults = {
+const svgoDefaults = {
   plugins: [
     {
       name: 'preset-default',
@@ -28,13 +28,10 @@ export const svgoDefaults = {
         overrides: {
           removeViewBox: false,
           cleanupIDs: {
-            prefix: {
-              toString() {
-                this.counter = this.counter || 0;
-                return `id-${this.counter++}`;
-              }
-            }
-          }
+            preservePrefixes: ['shape-'],
+            minify: false,
+            remove: false,
+          },
         },
       },
     },
@@ -50,7 +47,9 @@ export const svgoDefaults = {
       },
     },
   ],
-}
+};
+
+export { mozjpegDefaults, pngquantDefaults, svgoDefaults };
 
 export default (config) => {
   const shouldBeOptimized = (file) => {
@@ -58,19 +57,25 @@ export default (config) => {
     return /^(_)/.exec(basename) === null && isProduction;
   };
 
-  const svgoOptions = config.hasOwnProperty('svgoOptions') ? config.svoOptions : svgoDefaults;
-  const mozjpegOptions = config.hasOwnProperty('mozjpegOptions') ? config.mozjpegOptions : mozjpegDefaults;
-  const pngquantOptions = config.hasOwnProperty('pngquantOptions') ? config.pngquantOptions : pngquantDefaults;
+  const svgoOptions = config.hasOwnProperty('svgoOptions')
+    ? config.svgoOptions
+    : svgoDefaults;
+  const mozjpegOptions = config.hasOwnProperty('mozjpegOptions')
+    ? config.mozjpegOptions
+    : mozjpegDefaults;
+  const pngquantOptions = config.hasOwnProperty('pngquantOptions')
+    ? config.pngquantOptions
+    : pngquantDefaults;
 
   const defaultPlugins = [
-      // GIF
-      gifsicle(),
-      // JPEG
-      mozjpeg(mozjpegOptions),
-      // PNG
-      pngquant(pngquantOptions),
-      // SVG
-      svgo(svgoOptions),
+    // GIF
+    gifsicle(),
+    // JPEG
+    mozjpeg(mozjpegOptions),
+    // PNG
+    pngquant(pngquantOptions),
+    // SVG
+    svgo(svgoOptions),
   ];
 
   if (config.hasOwnProperty('plugins')) {
