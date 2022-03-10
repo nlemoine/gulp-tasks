@@ -16,7 +16,7 @@ export default (config, g) => {
       }
 
       let src = task.src;
-      const taskName = task.task;
+      const taskName = task.hasOwnProperty('name') ? task.name : task.task;
 
       if (!Array.isArray(src)) {
         src = [src];
