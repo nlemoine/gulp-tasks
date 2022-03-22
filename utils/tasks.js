@@ -101,4 +101,5 @@ export {
   getRevisionedTasks,
   getTaskName,
   getDestPaths,
+  hasTask,
 };
