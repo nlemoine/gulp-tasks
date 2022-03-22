@@ -19,6 +19,18 @@ function getActiveTasks(tasks) {
 }
 
 /**
+ * Has task name
+ * @param {String} taskName
+ * @param {Array} tasks
+ * @returns {Bool}
+ */
+function hasTask(taskName, tasks) {
+  return getActiveTasks(tasks).some((task) => {
+    return getTaskName(task) === taskName;
+  });
+}
+
+/**
  * Get build tasks
  * @param {Array} tasks
  * @returns {Array}

@@ -1,4 +1,4 @@
-import { getActiveTasks } from '../utils/tasks.js';
+import { getActiveTasks, hasTask } from '../utils/tasks.js';
 import fs from 'node:fs';
 import path from 'node:path';
 import browserSync from 'browser-sync';
@@ -48,7 +48,11 @@ export default (config, g) => {
         browserSync.reload();
         cb();
       };
-      watch(config.viewsSrc, reloadViews);
+      if(hasTask('tailwind', tasks) && hasTask('styles', tasks)) {
+        watch(config.viewsSrc, g.series('styles', reloadViews));
+      } else {
+        watch(config.viewsSrc, reloadViews);
+      }
     }
 
     done();
