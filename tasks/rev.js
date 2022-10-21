@@ -1,6 +1,6 @@
 import gulp from 'gulp';
 import vinylPaths from 'vinyl-paths';
-import del from 'del';
+import { deleteAsync } from 'del';
 import path from 'node:path';
 import through from 'through2';
 import revisionHash from 'rev-hash';
@@ -91,7 +91,7 @@ export default (config) => {
       .pipe(filterReved)
       // Delete .min files
       .pipe(filterMin)
-      .pipe(vinylPaths(del))
+      .pipe(vinylPaths(deleteAsync))
       .pipe(filterMin.restore)
       // Rename .min files
       .pipe(
