@@ -1,5 +1,5 @@
 import gulp from 'gulp';
-import del from 'del';
+import { deleteAsync } from 'del';
 import through from 'through2';
 import wpPot from 'gulp-wp-pot';
 import filter from 'gulp-filter';
@@ -77,7 +77,7 @@ export default (config) => {
       .pipe(dest(`${config.dest}/${config.options.domain}.pot`))
       .pipe(
         through.obj((chunk, enc, cb) => {
-          del(config.cachePath);
+          deleteAsync(config.cachePath);
           cb();
         })
       )
