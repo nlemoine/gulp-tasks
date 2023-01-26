@@ -5,6 +5,7 @@ import wpPot from 'gulp-wp-pot';
 import filter from 'gulp-filter';
 import rename from 'gulp-rename';
 import replace from 'gulp-replace';
+import { basePath } from '../../../../gulp.paths.cjs';
 
 const { src, dest } = gulp;
 
@@ -74,6 +75,8 @@ export default (config) => {
       .pipe(dest(config.cachePath))
       .pipe(filterTwig.restore)
       .pipe(wpPot(config.options))
+      .pipe(replace('.html.php', '.html.twig'))
+      .pipe(replace(config.cachePath, basePath))
       .pipe(dest(`${config.dest}/${config.options.domain}.pot`))
       .pipe(
         through.obj((chunk, enc, cb) => {
