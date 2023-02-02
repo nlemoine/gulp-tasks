@@ -35,11 +35,11 @@ const gettextRegex = {
   // esc_html__( "text", "domain" )
   // esc_html_e( "text", "domain" )
   simple:
-    /(__|_e|translate|esc_attr__|esc_attr_e|esc_html__|esc_html_e)\(\s*?['"].+?['"]\s*?,\s*?['"].+?['"]\s*?\)/g,
+    /(__|_e|translate|esc_attr__|esc_attr_e|esc_html__|esc_html_e)\(\s*?['"].+?['"]\s*?,\s*?['"].+?['"]\s*?\)/gs,
 
   // _n( "single", "plural", number, "domain" )
   plural:
-    /_n\(\s*?['"].*?['"]\s*?,\s*?['"].*?['"]\s*?,\s*?.+?\s*?,\s*?['"].+?['"]\s*?\)/g,
+    /_n\(\s*?['"].*?['"]\s*?,\s*?['"].*?['"]\s*?,\s*?.+?\s*?,\s*?['"].+?['"]\s*?\)/gs,
 
   // _x( "text", "context", "domain" )
   // _ex( "text", "context", "domain" )
@@ -47,11 +47,11 @@ const gettextRegex = {
   // esc_html_x( "text", "context", "domain" )
   // _nx( "single", "plural", "number", "context", "domain" )
   disambiguation:
-    /(_x|_ex|_nx|esc_attr_x|esc_html_x)\(\s*?['"].+?['"]\s*?,\s*?['"].+?['"]\s*?,\s*?['"].+?['"]\s*?\)/g,
+    /(_x|_ex|_nx|esc_attr_x|esc_html_x)\(\s*?['"].+?['"]\s*?,\s*?['"].+?['"]\s*?,\s*?['"].+?['"]\s*?\)/gs,
 
   // _n_noop( "singular", "plural", "domain" )
   // _nx_noop( "singular", "plural", "context", "domain" )
-  noop: /(_n_noop|_nx_noop)\((\s*?['"].+?['"]\s*?),(\s*?['"]\w+?['"]\s*?,){0,1}\s*?['"].+?['"]\s*?\)/g,
+  noop: /(_n_noop|_nx_noop)\((\s*?['"].+?['"]\s*?),(\s*?['"]\w+?['"]\s*?,){0,1}\s*?['"].+?['"]\s*?\)/gs,
 };
 
 export default (config) => {
