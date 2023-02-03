@@ -5,7 +5,6 @@ import wpPot from 'gulp-wp-pot';
 import filter from 'gulp-filter';
 import rename from 'gulp-rename';
 import replace from 'gulp-replace';
-import { basePath } from '../../../../gulp.paths.cjs';
 
 const { src, dest } = gulp;
 
@@ -54,7 +53,7 @@ const gettextRegex = {
   noop: /(_n_noop|_nx_noop)\((\s*?['"].+?['"]\s*?),(\s*?['"]\w+?['"]\s*?,){0,1}\s*?['"].+?['"]\s*?\)/gs,
 };
 
-export default (config) => {
+export default (config, mainConfig) => {
   const filterTwig = filter(['**/*.html.twig'], { restore: true });
   return (
     src(config.src)
@@ -76,7 +75,7 @@ export default (config) => {
       .pipe(filterTwig.restore)
       .pipe(wpPot(config.options))
       .pipe(replace('.html.php', '.html.twig'))
-      .pipe(replace(config.cachePath, basePath))
+      .pipe(replace(config.cachePath, mainConfig.basePath))
       .pipe(dest(`${config.dest}/${config.options.domain}.pot`))
       .pipe(
         through.obj((chunk, enc, cb) => {
