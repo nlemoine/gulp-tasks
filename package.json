@@ -101,7 +101,7 @@
     "vinyl-paths": "^5.0.0",
     "webpack": "^5.75.0",
     "webpack-stream": "^7.0.0",
-    "yargs": "^17.6.2",
+    "yargs": "^17.7.1",
     "zlib": "^1.0.5"
   },
   "devDependencies": {
