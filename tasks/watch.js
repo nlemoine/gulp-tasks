@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import browserSync from 'browser-sync';
 import gulp from 'gulp';
+import { has } from 'lodash-es';
 
 const { watch } = gulp;
 
@@ -11,12 +12,12 @@ export default (config, g) => {
     const tasks = getActiveTasks(config.tasks);
 
     Object.values(tasks).forEach((task) => {
-      if (!task.hasOwnProperty('behavior')) {
+      if (!has(task, 'behavior')) {
         return;
       }
 
       let src = task.src;
-      const taskName = task.hasOwnProperty('name') ? task.name : task.task;
+      const taskName = has(task, 'name') ? task.name : task.task;
 
       if (!Array.isArray(src)) {
         src = [src];
@@ -43,7 +44,7 @@ export default (config, g) => {
       watch(src, g.series(taskName, reload));
     });
 
-    if (config.hasOwnProperty('viewsSrc')) {
+    if (has(config, 'viewsSrc')) {
       const reloadViews = (cb) => {
         browserSync.reload();
         cb();

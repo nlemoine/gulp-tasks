@@ -18,9 +18,15 @@ import sourcemaps from 'gulp-sourcemaps';
 import gap from 'gulp-append-prepend';
 import clone from 'gulp-clone';
 import isProduction from '../utils/env.js';
+import { has } from 'lodash-es';
 
 const sass = gulpSass(dartSass);
 const { src, dest } = gulp;
+
+export let sassOptions = {
+  outputStyle: 'expanded',
+  importer: [packageImporter()],
+};
 
 export default (config, mainConfig) => {
   config = {
@@ -37,13 +43,9 @@ export default (config, mainConfig) => {
     const basename = path.basename(file.path, ext);
     const rtlBasename = basename.replace('-rtl', '');
 
-    if (
-      config.options.hasOwnProperty(basename) ||
-      config.options.hasOwnProperty(rtlBasename)
-    ) {
+    if (has(config.options, 'basename') || has(config.options, 'rtlBasename')) {
       if (
-        config.options.hasOwnProperty(rtlBasename) &&
-        config.options[rtlBasename].hasOwnProperty('rtl') &&
+        has(config.options, [rtlBasename, 'rtl']) &&
         config.options[rtlBasename].rtl
       ) {
         return config.options[rtlBasename];
@@ -63,13 +65,20 @@ export default (config, mainConfig) => {
     if (!options) {
       return false;
     }
-    if (!options.hasOwnProperty(key)) {
+    if (!has(options, key)) {
       return false;
     }
     return options[key];
   };
 
   const cloneSink = clone.sink();
+
+  if (has(config, 'sassOptions')) {
+    sassOptions = {
+      ...sassOptions,
+      ...config.sassOptions,
+    };
+  }
 
   /**
    * Apply RTLcss
@@ -84,12 +93,7 @@ export default (config, mainConfig) => {
     src(config.src)
       .pipe(gulpif(!isProduction, gap.prependText('$debug:true;')))
       .pipe(gulpif(!isProduction, sourcemaps.init()))
-      .pipe(
-        sass({
-          outputStyle: 'expanded',
-          importer: packageImporter(),
-        }).on('error', sass.logError)
-      )
+      .pipe(sass(sassOptions).on('error', sass.logError))
       // RTL CSS
       .pipe(
         gulpif((file) => {

@@ -9,7 +9,7 @@ const { src, dest } = gulp;
 
 export default (config) => {
   let tailwindConfig = false;
-  if (config.hasOwnProperty('config')) {
+  if (has(config, 'config')) {
     tailwindConfig = config.config;
   }
 
