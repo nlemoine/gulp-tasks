@@ -102,7 +102,6 @@ export default (config, mainConfig) => {
       )
       .pipe(
         gulpif((file) => {
-          console.log(file)
           return !!getFileOptionValue(file, 'rtl');
         }, rtlFile())
       )
@@ -118,7 +117,7 @@ export default (config, mainConfig) => {
         })
       )
       .on('error', (error) => {
-        console.log(error);
+        console.error(error);
       })
       // Purge CSS
       .pipe(
