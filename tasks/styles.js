@@ -43,7 +43,7 @@ export default (config, mainConfig) => {
     const basename = path.basename(file.path, ext);
     const rtlBasename = basename.replace('-rtl', '');
 
-    if (has(config.options, 'basename') || has(config.options, 'rtlBasename')) {
+    if (has(config.options, basename) || has(config.options, rtlBasename)) {
       if (
         has(config.options, [rtlBasename, 'rtl']) &&
         config.options[rtlBasename].rtl
@@ -102,6 +102,7 @@ export default (config, mainConfig) => {
       )
       .pipe(
         gulpif((file) => {
+          console.log(file)
           return !!getFileOptionValue(file, 'rtl');
         }, rtlFile())
       )
