@@ -4,12 +4,13 @@ import through from 'through2';
 import vinyl from 'vinyl';
 import path from 'node:path';
 import resolveConfig from 'tailwindcss/resolveConfig.js';
+import { has } from 'lodash-es';
 
 const { src, dest } = gulp;
 
 export default (config) => {
   let tailwindConfig = false;
-  if (config.hasOwnProperty('config')) {
+  if (has(config, 'config')) {
     tailwindConfig = config.config;
   }
 

@@ -74,9 +74,11 @@ export default (config, mainConfig) => {
       .pipe(dest(config.cachePath))
       .pipe(filterTwig.restore)
       .pipe(wpPot(config.options))
-      .pipe(replace(config.cachePath, function(match) {
-        return mainConfig.basePath;
-      }))
+      .pipe(
+        replace(config.cachePath, (match) => {
+          return mainConfig.basePath;
+        })
+      )
       .pipe(replace('.html.php', '.html.twig'))
       .pipe(dest(`${config.dest}/${config.options.domain}.pot`))
       .pipe(

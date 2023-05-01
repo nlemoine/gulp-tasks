@@ -9,6 +9,7 @@ import gulpif from 'gulp-if';
 import rename from 'gulp-rename';
 
 import isProduction from '../utils/env.js';
+import { has } from 'lodash-es';
 
 const { src, dest } = gulp;
 
@@ -57,13 +58,13 @@ export default (config) => {
     return /^(_)/.exec(basename) === null && isProduction;
   };
 
-  const svgoOptions = config.hasOwnProperty('svgoOptions')
+  const svgoOptions = has(config, 'svgoOptions')
     ? config.svgoOptions
     : svgoDefaults;
-  const mozjpegOptions = config.hasOwnProperty('mozjpegOptions')
+  const mozjpegOptions = has(config, 'mozjpegOptions')
     ? config.mozjpegOptions
     : mozjpegDefaults;
-  const pngquantOptions = config.hasOwnProperty('pngquantOptions')
+  const pngquantOptions = has(config, 'pngquantOptions')
     ? config.pngquantOptions
     : pngquantDefaults;
 
@@ -78,7 +79,7 @@ export default (config) => {
     svgo(svgoOptions),
   ];
 
-  if (config.hasOwnProperty('plugins')) {
+  if (has(config, 'plugins')) {
     defaultPlugins = config.plugins;
   }
 

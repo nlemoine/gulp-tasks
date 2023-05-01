@@ -8,6 +8,7 @@ import os from 'os';
 import fs from 'node:fs';
 import path from 'node:path';
 import { sync as commandExistsSync } from 'command-exists';
+import { has } from 'lodash-es';
 
 export default (config) => {
   return (done) => {
@@ -29,7 +30,7 @@ export default (config) => {
     // }
 
     // Custom proxy URL
-    if (config.hasOwnProperty('proxyUrl') && config.proxyUrl) {
+    if (has(config, 'proxyUrl') && config.proxyUrl) {
       bsConfig = {
         ...bsConfig,
         proxy: {
@@ -59,7 +60,10 @@ export default (config) => {
       }
 
       const symfonyPfx = path.join(os.homedir(), '.symfony/certs/default.p12');
-      const symfony5Pfx = path.join(os.homedir(), '.symfony5/certs/default.p12');
+      const symfony5Pfx = path.join(
+        os.homedir(),
+        '.symfony5/certs/default.p12'
+      );
       if (fs.existsSync(symfonyPfx) || fs.existsSync(symfony5Pfx)) {
         bsConfig = {
           ...bsConfig,
@@ -70,7 +74,7 @@ export default (config) => {
       }
     }
 
-    if (config.hasOwnProperty('rewriteUrl')) {
+    if (has(config, 'rewriteUrl')) {
       bsConfig = {
         ...bsConfig,
         rewriteRules: [proxyUtils.rewriteLinks(url.parse(config.rewriteUrl))],
