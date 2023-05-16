@@ -36,6 +36,10 @@ export default (config, g) => {
         return;
       }
 
+      if (has(task, 'watch')) {
+        src.push(task.watch);
+      }
+
       const reload = (cb) => {
         browserSync.reload(task.behavior === 'inject' ? '*.css' : task.dest);
         cb();

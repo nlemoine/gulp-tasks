@@ -38,7 +38,7 @@ export let webpackConfig = {
       {
         test: /\.m?js/,
         resolve: {
-          fullySpecified: false
+          fullySpecified: false,
         },
         exclude: /(node_modules)/,
         use: {
@@ -81,7 +81,7 @@ export default (config, mainConfig) => {
     restore: true,
   });
 
-  if(has(config, 'webpackConfig')) {
+  if (has(config, 'webpackConfig')) {
     webpackConfig = Object.assign(webpackConfig, config.webpackConfig);
   }
 
