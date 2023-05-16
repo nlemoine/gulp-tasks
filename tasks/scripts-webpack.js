@@ -36,7 +36,7 @@ export let webpackConfig = {
   module: {
     rules: [
       {
-        test: /\.m?js/,
+        test: /\.m?js$/,
         resolve: {
           fullySpecified: false,
         },
