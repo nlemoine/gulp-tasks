@@ -63,7 +63,6 @@
     "gulp-rev": "^10.0.0",
     "gulp-rev-css-url": "^0.1.0",
     "gulp-rollup": "^2.17.0",
-    "gulp-rtlcss": "^2.0.0",
     "gulp-sass": "^5.1.0",
     "gulp-size": "^4.0.1",
     "gulp-sourcemaps": "^3.0.0",
