@@ -4,19 +4,16 @@ import path from 'node:path';
 import packageImporter from 'node-sass-package-importer';
 import autoprefixer from 'autoprefixer';
 import cssnano from 'cssnano';
-import lazypipe from 'lazypipe';
 import dartSass from 'sass';
 import gulpSass from 'gulp-sass';
 import purgecss from '@fullhuman/postcss-purgecss';
 
 import rename from 'gulp-rename';
-import rtlcss from 'gulp-rtlcss';
 import postcss from 'gulp-postcss';
 import gulpif from 'gulp-if';
 import prettier from 'gulp-prettier';
 import sourcemaps from 'gulp-sourcemaps';
 import gap from 'gulp-append-prepend';
-import clone from 'gulp-clone';
 import isProduction from '../utils/env.js';
 import { has } from 'lodash-es';
 
@@ -70,8 +67,6 @@ export default (config, mainConfig) => {
     }
     return options[key];
   };
-
-  const cloneSink = clone.sink();
 
   if (has(config, 'sassOptions')) {
     sassOptions = {
