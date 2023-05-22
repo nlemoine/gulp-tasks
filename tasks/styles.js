@@ -80,36 +80,11 @@ export default (config, mainConfig) => {
     };
   }
 
-  /**
-   * Apply RTLcss
-   */
-  const rtlFile = lazypipe()
-    .pipe(rename, {
-      suffix: '-rtl',
-    })
-    .pipe(rtlcss);
-
   return (
     src(config.src)
       .pipe(gulpif(!isProduction, gap.prependText('$debug:true;')))
       .pipe(gulpif(!isProduction, sourcemaps.init()))
       .pipe(sass(sassOptions).on('error', sass.logError))
-      // RTL CSS
-      .pipe(
-        gulpif((file) => {
-          return !!getFileOptionValue(file, 'rtl');
-        }, cloneSink)
-      )
-      .pipe(
-        gulpif((file) => {
-          return !!getFileOptionValue(file, 'rtl');
-        }, rtlFile())
-      )
-      .pipe(
-        gulpif((file) => {
-          return !!getFileOptionValue(file, 'rtl');
-        }, cloneSink.tap())
-      )
       .pipe(dest(config.dest)) // Tailwind 3 needs this
       .pipe(
         postcss({
