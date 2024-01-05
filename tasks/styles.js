@@ -84,7 +84,7 @@ export default (config, mainConfig) => {
       .pipe(
         postcss({
           plugins: [autoprefixer],
-        })
+        }),
       )
       .on('error', (error) => {
         console.error(error);
@@ -101,8 +101,8 @@ export default (config, mainConfig) => {
             return {
               plugins: [purgecss(purgeCssConfig)],
             };
-          })
-        )
+          }),
+        ),
       )
       // Prettier
       .pipe(gulpif(isProduction, prettier()))
@@ -112,8 +112,8 @@ export default (config, mainConfig) => {
           isProduction,
           rename({
             suffix: '.min',
-          })
-        )
+          }),
+        ),
       )
       .pipe(
         gulpif(
@@ -130,8 +130,8 @@ export default (config, mainConfig) => {
                 },
               ],
             }),
-          ])
-        )
+          ]),
+        ),
       )
       .pipe(gulpif(!isProduction, sourcemaps.write('.')))
       .pipe(dest(config.dest))

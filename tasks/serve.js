@@ -62,7 +62,7 @@ export default (config) => {
       const symfonyPfx = path.join(os.homedir(), '.symfony/certs/default.p12');
       const symfony5Pfx = path.join(
         os.homedir(),
-        '.symfony5/certs/default.p12'
+        '.symfony5/certs/default.p12',
       );
       if (fs.existsSync(symfonyPfx) || fs.existsSync(symfony5Pfx)) {
         bsConfig = {

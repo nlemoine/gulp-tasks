@@ -11,7 +11,7 @@ export default (config) => {
       rename((path) => {
         path.basename = path.basename.replace('mjml', 'html');
         path.extname = '.twig';
-      })
+      }),
     )
     .pipe(dest(config.dest));
 };

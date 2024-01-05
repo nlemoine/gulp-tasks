@@ -61,8 +61,8 @@ export default (config, mainConfig) => {
         },
         {
           format: 'es',
-        }
-      )
+        },
+      ),
     )
     .pipe(gulpif(isProduction, prettier()))
     .pipe(gulpif(isProduction, dest(config.dest)))
@@ -71,8 +71,8 @@ export default (config, mainConfig) => {
         isProduction,
         rename({
           suffix: '.min',
-        })
-      )
+        }),
+      ),
     )
     .pipe(
       gulpif(
@@ -82,8 +82,8 @@ export default (config, mainConfig) => {
             comments: false,
           },
           mangle: false,
-        })
-      )
+        }),
+      ),
     )
     .pipe(gulpif(!isProduction, sourcemaps.write('.')))
     .pipe(dest(config.dest));

@@ -54,7 +54,7 @@ const replaceRevUrls = () => {
         longestFirst.forEach((_f) => {
           contents = contents.replace(
             new RegExp(_f.originalPath, 'g'),
-            _f.hashedPath
+            _f.hashedPath,
           );
         });
 
@@ -69,7 +69,7 @@ const replaceRevUrls = () => {
       });
 
       cb();
-    }
+    },
   );
 };
 
@@ -100,7 +100,7 @@ export default (config) => {
             return;
           }
           path.basename = path.basename.replace(/\.min$/, '');
-        })
+        }),
       )
       .pipe(rev())
       // .pipe(plugins.revCssUrl())

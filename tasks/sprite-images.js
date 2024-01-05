@@ -27,8 +27,8 @@ export default (config) => {
           pngquant({
             quality: [0.5, 0.5],
           }),
-        ])
-      )
+        ]),
+      ),
     )
     .pipe(dest(config.dest))
     .pipe(filterPngs.restore)
