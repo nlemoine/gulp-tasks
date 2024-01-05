@@ -1,13 +1,12 @@
 import gulp from 'gulp';
 
-import betterRollup from 'gulp-better-rollup';
+import rollup from '@rbnlffl/gulp-rollup';
 import { babel } from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
 import { default as resolve } from '@rollup/plugin-node-resolve';
 import alias from '@rollup/plugin-alias';
 import filesize from 'rollup-plugin-filesize';
 import sizes from 'rollup-plugin-sizes';
-import analyze from 'rollup-plugin-analyzer';
 import multi from '@rollup/plugin-multi-entry';
 import path from 'node:path';
 import sourcemaps from 'gulp-sourcemaps';
@@ -23,7 +22,7 @@ export default (config, mainConfig) => {
   return src(config.src)
     .pipe(sourcemaps.init())
     .pipe(
-      betterRollup(
+      rollup(
         {
           cache: true,
           plugins: [
