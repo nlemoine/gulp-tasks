@@ -1,24 +1,26 @@
 {
-  "name": "@hellonico/gulp-tasks",
+  "name": "@nlemoine/gulp-tasks",
   "version": "1.0.0",
   "description": "",
-  "type": "module",
-  "engines": {
-    "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
-  },
-  "scripts": {
-    "format": "prettier --write ."
+  "homepage": "https://github.com/nlemoine/gulp-tasks#readme",
+  "bugs": {
+    "url": "https://github.com/nlemoine/gulp-tasks/issues"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nlemoine/gulp-tasks.git"
   },
-  "author": "Nicolas Lemoine",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/nlemoine/gulp-tasks/issues"
+  "author": "Nicolas Lemoine",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "deps:check": "find . -name package.json -not -path '*node_modules*' -execdir pwd \\; -execdir npx depcheck --oneline \\;",
+    "deps:upgrade": "ncu -u && ncu -u --workspaces",
+    "deps:upgrade:dry": "ncu && ncu --workspaces",
+    "format": "prettier --write .",
+    "lint:pkg-json:fix": "find . -name package.json -not -path '*node_modules*' -execdir npx sort-package-json \\;"
   },
-  "homepage": "https://github.com/nlemoine/gulp-tasks#readme",
   "dependencies": {
     "@babel/core": "^7.23.9",
     "@babel/plugin-syntax-dynamic-import": "^7.8.3",
@@ -82,11 +84,18 @@
     "vinyl-buffer": "^1.0.1",
     "vinyl-named": "^1.1.0",
     "vinyl-paths": "^5.0.0",
-    "webpack": "^5.90.0",
+    "webpack": "^5.90.1",
     "webpack-stream": "^7.0.0",
     "zlib": "^1.0.5"
   },
   "devDependencies": {
-    "prettier": "^3.2.4"
+    "prettier": "^3.2.5"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/",
+    "scope": "@nlemoine"
   }
 }
