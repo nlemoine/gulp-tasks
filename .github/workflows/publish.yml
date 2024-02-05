@@ -31,6 +31,8 @@ jobs:
 
       - uses: bahmutov/npm-install@v1
         if: ${{ steps.release.outputs.release_created == 'true' }}
+        with:
+          useLockFile: false
 
       - name: Build package
         if: ${{ steps.release.outputs.release_created == 'true' }}
