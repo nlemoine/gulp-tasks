@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/nlemoine/gulp-tasks/compare/v1.0.0...v1.0.1) (2024-02-06)
+
+
+### Bug Fixes
+
+* **deps:** update dependency gulp-postcss to v10 ([166345f](https://github.com/nlemoine/gulp-tasks/commit/166345f91e015a5b81b0dcefdafa803425c38901))
+
 ## 1.0.0 (2024-02-05)
 
 
