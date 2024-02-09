@@ -53,7 +53,10 @@ export default (config, g) => {
         browserSync.reload();
         cb();
       };
-      if (hasTask('tailwind', tasks) && hasTask('styles', tasks)) {
+      if (
+        has(config, ['pkg', 'dependencies', 'tailwindcss']) &&
+        hasTask('styles', tasks)
+      ) {
         watch(config.viewsSrc, g.series('styles', reloadViews));
       } else {
         watch(config.viewsSrc, reloadViews);

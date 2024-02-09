@@ -93,7 +93,7 @@ export default (config) => {
             return;
           }
           path.basename = path.basename.replace(/^(_)/, '');
-        })
+        }),
       )
       .pipe(dest(config.dest))
   );

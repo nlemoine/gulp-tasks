@@ -45,7 +45,7 @@ export default async (g, config) => {
   g.task('build', g.series(...getBuildTasks(config.tasks)));
   g.task(
     'rev',
-    g.series('clean', 'build', () => rev(config))
+    g.series('clean', 'build', () => rev(config)),
   );
   g.task('serve', serve(config));
   g.task('watch', watch(config, g));

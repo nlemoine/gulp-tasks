@@ -54,7 +54,7 @@ const gettextRegex = {
 };
 
 export default (config, mainConfig) => {
-  const filterTwig = filter(['**/*.html.twig'], { restore: true });
+  const filterTwig = filter(['**/*.twig'], { restore: true });
   return (
     src(config.src)
       .pipe(filterTwig)
@@ -62,14 +62,14 @@ export default (config, mainConfig) => {
       .pipe(replace(gettextRegex.simple, (match) => `<?php ${match}; ?>`))
       .pipe(replace(gettextRegex.plural, (match) => `<?php ${match}; ?>`))
       .pipe(
-        replace(gettextRegex.disambiguation, (match) => `<?php ${match}; ?>`)
+        replace(gettextRegex.disambiguation, (match) => `<?php ${match}; ?>`),
       )
       .pipe(replace(gettextRegex.noop, (match) => `<?php ${match}; ?>`))
       // Rename file with .php extension
       .pipe(
         rename({
           extname: '.php',
-        })
+        }),
       )
       .pipe(dest(config.cachePath))
       .pipe(filterTwig.restore)
@@ -77,7 +77,7 @@ export default (config, mainConfig) => {
       .pipe(
         replace(config.cachePath, (match) => {
           return mainConfig.basePath;
-        })
+        }),
       )
       .pipe(replace('.html.php', '.html.twig'))
       .pipe(dest(`${config.dest}/${config.options.domain}.pot`))
@@ -85,7 +85,7 @@ export default (config, mainConfig) => {
         through.obj((chunk, enc, cb) => {
           deleteAsync(config.cachePath);
           cb();
-        })
+        }),
       )
   );
 };
