@@ -8,7 +8,7 @@ const { src, dest, series } = gulp;
 export default (config) => {
   const files = [];
   ['js', 'css', 'svg'].forEach((ext) =>
-    files.push(`${config.buildPath}/**/*.${ext}`)
+    files.push(`${config.buildPath}/**/*.${ext}`),
   );
 
   const gzipTask = () => {
@@ -18,7 +18,7 @@ export default (config) => {
           gzipOptions: {
             level: 9,
           },
-        })
+        }),
       )
       .pipe(dest(config.buildPath));
   };
@@ -31,7 +31,7 @@ export default (config) => {
             [zlib.constants.BROTLI_PARAM_QUALITY]:
               zlib.constants.BROTLI_MAX_QUALITY,
           },
-        })
+        }),
       )
       .pipe(dest(config.buildPath));
   };

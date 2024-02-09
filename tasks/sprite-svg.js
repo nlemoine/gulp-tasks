@@ -25,7 +25,7 @@ export default (config) => {
           namespaceIDs: false,
           namespaceClassnames: false,
         },
-      })
+      }),
     )
     .pipe(dest(config.dest));
 };

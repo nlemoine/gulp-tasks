@@ -43,7 +43,7 @@ export default (config) => {
               contents: Buffer.from(converted),
             });
             cb(null, transformedFile);
-          })
+          }),
         )
         .pipe(dest(path.dirname(d)));
     }
@@ -64,7 +64,7 @@ export default (config) => {
             });
 
             cb(null, transformedFile);
-          })
+          }),
         )
         .pipe(dest(path.dirname(d)));
     }

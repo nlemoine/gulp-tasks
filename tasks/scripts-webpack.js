@@ -112,8 +112,8 @@ export default (config, mainConfig) => {
         isProduction,
         rename({
           suffix: '.min',
-        })
-      )
+        }),
+      ),
     )
     .pipe(gulpif(isProduction, excludeChunks.restore))
     .pipe(
@@ -123,8 +123,8 @@ export default (config, mainConfig) => {
           output: {
             comments: false,
           },
-        })
-      )
+        }),
+      ),
     )
     .pipe(dest(config.dest));
 };
