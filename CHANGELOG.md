@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.1.0](https://github.com/nlemoine/gulp-tasks/compare/v1.0.1...v1.1.0) (2024-02-09)
+
+
+### Features
+
+* bump postcss ([9cd01cb](https://github.com/nlemoine/gulp-tasks/commit/9cd01cbe8a01806a29f7e96c7ec04a09cc5ed297))
+
+
+### Bug Fixes
+
+* package ref ([4ae1c08](https://github.com/nlemoine/gulp-tasks/commit/4ae1c0855fa7dd99800fa21b103dfa0c2778b90a))
+
 ## [1.0.1](https://github.com/nlemoine/gulp-tasks/compare/v1.0.0...v1.0.1) (2024-02-06)
 
 
