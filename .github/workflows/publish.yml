@@ -38,6 +38,7 @@ jobs:
         if: ${{ steps.release.outputs.release_created == 'true' }}
         run: npm run build --if-present
 
-      - name: Publish package
-        run: npm publish
+      - uses: JS-DevTools/npm-publish@v3
         if: ${{ steps.release.outputs.release_created == 'true' }}
+        with:
+          token: ${{ secrets.READ_WRITE_PACKAGES_TOKEN_NPM }}
