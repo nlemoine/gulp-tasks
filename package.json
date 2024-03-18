@@ -1,6 +1,6 @@
 {
   "name": "@nlemoine/gulp-tasks",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "A set of gulp tasks",
   "homepage": "https://github.com/nlemoine/gulp-tasks#readme",
   "bugs": {
@@ -71,11 +71,11 @@
     "node-sass-package-importer": "^5.3.3",
     "postcss": "^8.4.36",
     "rev-hash": "^4.1.0",
-    "rollup": "^4.13.0",
+    "rollup": "^4.12.0",
     "rollup-plugin-filesize": "^10.0.0",
     "rollup-plugin-multi-input": "^1.4.1",
     "rollup-plugin-sizes": "^1.0.6",
-    "sass": "^1.72.0",
+    "sass": "^1.71.1",
     "sass-theme-json": "^2.0.1",
     "tabletojson": "^4.1.3",
     "tailwindcss-export-config": "git+https://github.com/nlemoine/tailwindcss-export-config.git#feat-default-key",
