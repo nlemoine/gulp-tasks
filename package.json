@@ -39,7 +39,7 @@
     "cssnano": "^6.0.5",
     "del": "^7.1.0",
     "globby": "^14.0.1",
-    "gulp": "^4.0.2",
+    "gulp": "^5.0.0",
     "gulp-append-prepend": "^1.0.9",
     "gulp-brotli": "^3.0.0",
     "gulp-debug": "^5.0.1",
