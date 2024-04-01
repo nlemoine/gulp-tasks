@@ -71,7 +71,7 @@
     "node-sass-package-importer": "^5.3.3",
     "postcss": "^8.4.36",
     "rev-hash": "^4.1.0",
-    "rollup": "^4.13.0",
+    "rollup": "^4.13.2",
     "rollup-plugin-filesize": "^10.0.0",
     "rollup-plugin-multi-input": "^1.4.1",
     "rollup-plugin-sizes": "^1.0.6",
