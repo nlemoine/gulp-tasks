@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.1](https://github.com/nlemoine/gulp-tasks/compare/v2.0.0...v2.0.1) (2024-05-06)
+
+
+### Bug Fixes
+
+* gulp tasks ([5be0592](https://github.com/nlemoine/gulp-tasks/commit/5be0592a9a8e882b250a9809fbb0b11410b1260f))
+
 ## [2.0.0](https://github.com/nlemoine/gulp-tasks/compare/v1.1.0...v2.0.0) (2024-05-06)
 
 
