@@ -1,8 +1,6 @@
-import gulp from 'gulp';
+import { src, dest } from 'gulp';
 import mjml from 'gulp-mjml';
 import rename from 'gulp-rename';
-
-const { src, dest } = gulp;
 
 export default (config) => {
   return src(config.src)

@@ -1,5 +1,5 @@
-import gulp from 'gulp';
-import path from 'node:path';
+import { src, dest } from 'gulp';
+import { basename, extname } from 'node:path';
 
 import packageImporter from 'node-sass-package-importer';
 import autoprefixer from 'autoprefixer';
@@ -18,7 +18,6 @@ import isProduction from '../utils/env.js';
 import { has } from 'lodash-es';
 
 const sass = gulpSass(dartSass);
-const { src, dest } = gulp;
 
 export let sassOptions = {
   outputStyle: 'expanded',
@@ -36,18 +35,18 @@ export default (config, mainConfig) => {
    * @param {*} file
    */
   const getFileOptions = (file) => {
-    const ext = path.extname(file.path);
-    const basename = path.basename(file.path, ext);
+    const ext = extname(file.path);
+    const fileBasename = basename(file.path, ext);
     const rtlBasename = basename.replace('-rtl', '');
 
-    if (has(config.options, basename) || has(config.options, rtlBasename)) {
+    if (has(config.options, fileBasename) || has(config.options, rtlBasename)) {
       if (
         has(config.options, [rtlBasename, 'rtl']) &&
         config.options[rtlBasename].rtl
       ) {
         return config.options[rtlBasename];
       }
-      return config.options[basename];
+      return config.options[fileBasename];
     }
     return false;
   };

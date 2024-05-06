@@ -1,4 +1,4 @@
-import gulp from 'gulp';
+import { src, dest } from 'gulp';
 // import plugins from "../utils/plugins";
 import pngquant from 'imagemin-pngquant';
 import buffer from 'vinyl-buffer';
@@ -7,8 +7,6 @@ import gulpif from 'gulp-if';
 import filter from 'gulp-filter';
 import imagemin from 'gulp-imagemin';
 import isProduction from '../utils/env.js';
-
-const { src, dest } = gulp;
 
 export default (config) => {
   const filterPngs = filter(['*.png'], {

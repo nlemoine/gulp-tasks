@@ -1,4 +1,4 @@
-import path from 'node:path';
+import { join } from 'node:path';
 
 /**
  * Get active tasks
@@ -83,14 +83,14 @@ function getDestPaths(tasks) {
       return;
     }
     if (task.task === 'styles') {
-      dests.push(path.join(task.dest, '**/*.min.*'));
+      dests.push(join(task.dest, '**/*.min.*'));
     } else if (task.task === 'scripts') {
-      dests.push(path.join(task.dest, '**/*.min.*'));
+      dests.push(join(task.dest, '**/*.min.*'));
       // dests.push(path.join(task.dest, 'modernizr.js'))
     } else {
-      dests.push(path.join(task.dest, '**/*'));
+      dests.push(join(task.dest, '**/*'));
     }
-    dests.push(`!${path.join(task.dest, '**/*.map')}`);
+    dests.push(`!${join(task.dest, '**/*.map')}`);
   });
   return dests;
 }

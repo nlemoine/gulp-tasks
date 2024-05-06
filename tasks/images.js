@@ -1,5 +1,5 @@
 import gulp from 'gulp';
-import path from 'node:path';
+import { basename, extname } from 'node:path';
 
 import imagemin, { gifsicle, mozjpeg, optipng, svgo } from 'gulp-imagemin';
 import pngquant from 'imagemin-pngquant';
@@ -54,8 +54,8 @@ export { mozjpegDefaults, pngquantDefaults, svgoDefaults };
 
 export default (config) => {
   const shouldBeOptimized = (file) => {
-    const basename = path.basename(file.path, path.extname(file.path));
-    return /^(_)/.exec(basename) === null && isProduction;
+    const fileBasename = basename(file.path, extname(file.path));
+    return /^(_)/.exec(fileBasename) === null && isProduction;
   };
 
   const svgoOptions = has(config, 'svgoOptions')

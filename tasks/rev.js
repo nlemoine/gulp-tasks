@@ -1,15 +1,13 @@
-import gulp from 'gulp';
+import { src, dest } from 'gulp';
 import vinylPaths from 'vinyl-paths';
 import { deleteAsync } from 'del';
-import path from 'node:path';
+import { dirname, extname, join, basename } from 'node:path';
 import through from 'through2';
 import revisionHash from 'rev-hash';
 import { getRevisionedTasks, getDestPaths } from '../utils/tasks.js';
 import filter from 'gulp-filter';
 import rev from 'gulp-rev';
 import rename from 'gulp-rename';
-
-const { src, dest } = gulp;
 
 const replaceRevUrls = () => {
   const files = [];
@@ -41,7 +39,7 @@ const replaceRevUrls = () => {
 
       files.forEach((f) => {
         const file = f.file;
-        if (path.extname(file.revOrigPath) !== '.css') {
+        if (extname(file.revOrigPath) !== '.css') {
           self.push(file);
           return;
         }
@@ -60,10 +58,9 @@ const replaceRevUrls = () => {
 
         file.contents = new Buffer.from(contents);
         const hash = (file.revHash = revisionHash(contents));
-        const ext = path.extname(file.path);
-        const filename =
-          path.basename(file.revOrigPath, ext) + '-' + hash + ext;
-        file.path = path.join(path.dirname(file.path), filename);
+        const ext = extname(file.path);
+        const filename = basename(file.revOrigPath, ext) + '-' + hash + ext;
+        file.path = join(dirname(file.path), filename);
 
         self.push(file);
       });

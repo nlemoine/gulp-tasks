@@ -1,3 +1,4 @@
+import { series, task } from 'gulp';
 import {
   getActiveTasks,
   getRevisionedTasks,
@@ -22,32 +23,33 @@ export default async (g, config) => {
   if (!config.hasOwnProperty('tasks')) {
     throw new Error('No tasks defined in config');
   }
+
   const activeTasks = getActiveTasks(config.tasks);
   if (!activeTasks.length) {
     throw new Error('No active tasks found');
   }
 
   for (const t of activeTasks) {
-    let task = null;
+    let taskCb = null;
     if (t.task === 'scripts') {
       const bundler = t.hasOwnProperty('bundler') ? t.bundler : 'rollup';
       const { default: taskFn } = await import(`./tasks/scripts-${bundler}.js`);
-      task = taskFn;
+      taskCb = taskFn;
     } else {
       const { default: taskFn } = await import(`./tasks/${t.task}.js`);
-      task = taskFn;
+      taskCb = taskFn;
     }
-    g.task(getTaskName(t), () => task(t, config));
+    task(getTaskName(t), () => taskCb(t, config));
   }
 
-  g.task('compress', () => compress(config));
-  g.task('clean', () => clean(config));
-  g.task('build', g.series(...getBuildTasks(config.tasks)));
-  g.task(
+  task('compress', () => compress(config));
+  task('clean', () => clean(config));
+  task('build', series(...getBuildTasks(config.tasks)));
+  task(
     'rev',
-    g.series('clean', 'build', () => rev(config)),
+    series('clean', 'build', () => rev(config)),
   );
-  g.task('serve', serve(config));
-  g.task('watch', watch(config, g));
-  g.task('default', g.series('watch', 'serve'));
+  task('serve', serve(config));
+  task('watch', watch(config, g));
+  task('default', series('watch', 'serve'));
 };

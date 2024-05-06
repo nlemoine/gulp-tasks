@@ -1,9 +1,7 @@
-import gulp from 'gulp';
+import { src, dest, series } from 'gulp';
 import zlib from 'zlib';
 import gzip from 'gulp-gzip';
 import brotli from 'gulp-brotli';
-
-const { src, dest, series } = gulp;
 
 export default (config) => {
   const files = [];

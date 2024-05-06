@@ -1,8 +1,6 @@
-import gulp from 'gulp';
+import { src, dest } from 'gulp';
 import svgSprite from 'gulp-svg-sprite';
 // import plugins from "../utils/plugins";
-
-const { src, dest } = gulp;
 
 export default (config) => {
   return src(config.src)

@@ -1,6 +1,6 @@
-import gulp from 'gulp';
+import { src, dest } from 'gulp';
 
-import path from 'node:path';
+import { resolve } from 'node:path';
 import isProduction from '../utils/env.js';
 import compiler from 'webpack';
 import webpack from 'webpack-stream';
@@ -11,8 +11,6 @@ import rename from 'gulp-rename';
 import gulpif from 'gulp-if';
 import prettier from 'gulp-prettier';
 import { has } from 'lodash-es';
-
-const { src, dest } = gulp;
 
 export let webpackConfig = {
   watch: false,
@@ -86,8 +84,8 @@ export default (config, mainConfig) => {
   }
 
   const defaultAliases = {
-    '~': path.resolve(`${mainConfig.rootPath}/node_modules`),
-    '@': path.resolve(`${mainConfig.assetsPath}/js`),
+    '~': resolve(`${mainConfig.rootPath}/node_modules`),
+    '@': resolve(`${mainConfig.assetsPath}/js`),
   };
 
   webpackConfig = {

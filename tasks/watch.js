@@ -2,10 +2,8 @@ import { getActiveTasks, hasTask } from '../utils/tasks.js';
 import fs from 'node:fs';
 import path from 'node:path';
 import browserSync from 'browser-sync';
-import gulp from 'gulp';
+import { watch } from 'gulp';
 import { has } from 'lodash-es';
-
-const { watch } = gulp;
 
 export default (config, g) => {
   return (done) => {

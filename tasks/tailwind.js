@@ -1,12 +1,10 @@
-import gulp from 'gulp';
+import { src, dest } from 'gulp';
 import TailwindExportConfig from 'tailwindcss-export-config';
 import through from 'through2';
 import vinyl from 'vinyl';
-import path from 'node:path';
+import { extname, basename, dirname } from 'node:path';
 import resolveConfig from 'tailwindcss/resolveConfig.js';
 import { has } from 'lodash-es';
-
-const { src, dest } = gulp;
 
 export default (config) => {
   let tailwindConfig = false;
@@ -22,7 +20,7 @@ export default (config) => {
   }
 
   dests.forEach((d) => {
-    const ext = path.extname(d);
+    const ext = extname(d);
 
     // Output SCSS
     if (ext === '.scss') {
@@ -37,7 +35,7 @@ export default (config) => {
             });
             const converted = converter.convert();
             const transformedFile = new vinyl({
-              path: path.basename(d),
+              path: basename(d),
               base: undefined,
               cwd: '',
               contents: Buffer.from(converted),
@@ -45,7 +43,7 @@ export default (config) => {
             cb(null, transformedFile);
           }),
         )
-        .pipe(dest(path.dirname(d)));
+        .pipe(dest(dirname(d)));
     }
 
     // Output JSON
@@ -57,7 +55,7 @@ export default (config) => {
             config = resolveConfig(tailwindConfig ? tailwindConfig : file.path);
 
             const transformedFile = new vinyl({
-              path: path.basename(d),
+              path: basename(d),
               base: undefined,
               cwd: '',
               contents: Buffer.from(JSON.stringify(config.theme, null, 2)),
@@ -66,7 +64,7 @@ export default (config) => {
             cb(null, transformedFile);
           }),
         )
-        .pipe(dest(path.dirname(d)));
+        .pipe(dest(dirname(d)));
     }
   });
 
