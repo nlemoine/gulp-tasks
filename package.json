@@ -55,6 +55,7 @@
     "gulp-replace": "^1.1.4",
     "gulp-rev": "^11.0.0",
     "gulp-sass": "^5.1.0",
+    "gulp-sharp-optimize-images": "^4.0.3",
     "gulp-sourcemaps": "^3.0.0",
     "gulp-svg-sprite": "^2.0.3",
     "gulp-terser": "^2.1.0",

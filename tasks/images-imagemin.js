@@ -1,4 +1,4 @@
-import gulp from 'gulp';
+import { src, dest } from 'gulp';
 import { basename, extname } from 'node:path';
 
 import imagemin, { gifsicle, mozjpeg, optipng, svgo } from 'gulp-imagemin';
@@ -10,8 +10,6 @@ import rename from 'gulp-rename';
 
 import isProduction from '../utils/env.js';
 import { has } from 'lodash-es';
-
-const { src, dest } = gulp;
 
 const mozjpegDefaults = {
   quality: 100,

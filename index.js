@@ -35,6 +35,12 @@ export default async (g, config) => {
       const bundler = t.hasOwnProperty('bundler') ? t.bundler : 'rollup';
       const { default: taskFn } = await import(`./tasks/scripts-${bundler}.js`);
       taskCb = taskFn;
+    } else if (t.task === 'images') {
+      const optimizer = t.hasOwnProperty('optimizer') ? t.optimizer : 'sharp';
+      const { default: taskFn } = await import(
+        `./tasks/images-${optimizer}.js`
+      );
+      taskCb = taskFn;
     } else {
       const { default: taskFn } = await import(`./tasks/${t.task}.js`);
       taskCb = taskFn;

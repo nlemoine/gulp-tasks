@@ -37,7 +37,7 @@ export default (config, mainConfig) => {
   const getFileOptions = (file) => {
     const ext = extname(file.path);
     const fileBasename = basename(file.path, ext);
-    const rtlBasename = basename.replace('-rtl', '');
+    const rtlBasename = fileBasename.replace('-rtl', '');
 
     if (has(config.options, fileBasename) || has(config.options, rtlBasename)) {
       if (
