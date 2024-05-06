@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.2](https://github.com/nlemoine/gulp-tasks/compare/v2.0.1...v2.0.2) (2024-05-06)
+
+
+### Bug Fixes
+
+* images & styles task ([c5daa50](https://github.com/nlemoine/gulp-tasks/commit/c5daa501aa9d7cb1d55edc40ff7bc2417efbd4d5))
+
 ## [2.0.1](https://github.com/nlemoine/gulp-tasks/compare/v2.0.0...v2.0.1) (2024-05-06)
 
 
