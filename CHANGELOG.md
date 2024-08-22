@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.1](https://github.com/nlemoine/gulp-tasks/compare/v2.1.0...v2.1.1) (2024-08-22)
+
+
+### Bug Fixes
+
+* Copy task ([e36832e](https://github.com/nlemoine/gulp-tasks/commit/e36832e5139911d5d2a77fe3823e2c494bf9f0b0))
+
 ## [2.1.0](https://github.com/nlemoine/gulp-tasks/compare/v2.0.2...v2.1.0) (2024-08-22)
 
 
