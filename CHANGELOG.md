@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://github.com/nlemoine/gulp-tasks/compare/v2.0.2...v2.1.0) (2024-08-22)
+
+
+### Features
+
+* Update deps ([7d9db95](https://github.com/nlemoine/gulp-tasks/commit/7d9db953d471cd806009d825db87251a8842ba33))
+
 ## [2.0.2](https://github.com/nlemoine/gulp-tasks/compare/v2.0.1...v2.0.2) (2024-05-06)
 
 
