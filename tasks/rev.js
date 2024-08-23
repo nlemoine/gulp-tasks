@@ -84,6 +84,7 @@ export default (config) => {
   return (
     src(dests, {
       base: config.buildPath,
+      encoding: false,
     })
       .pipe(filterReved)
       // Delete .min files
