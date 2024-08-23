@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.1.2](https://github.com/nlemoine/gulp-tasks/compare/v2.1.1...v2.1.2) (2024-08-23)
+
+
+### Bug Fixes
+
+* File encoding ([7dd123a](https://github.com/nlemoine/gulp-tasks/commit/7dd123aa1b2a5d09a6d3e7cb34bdebec5a1fbb1b))
+* Font encoding ([5966880](https://github.com/nlemoine/gulp-tasks/commit/5966880ac6109ad25405836c0bbef80c73661a51))
+
 ## [2.1.1](https://github.com/nlemoine/gulp-tasks/compare/v2.1.0...v2.1.1) (2024-08-22)
 
 
