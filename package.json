@@ -85,7 +85,7 @@
     "vinyl-buffer": "^1.0.1",
     "vinyl-named": "^1.1.0",
     "vinyl-paths": "^5.0.0",
-    "webpack": "^5.93.0",
+    "webpack": "^5.94.0",
     "webpack-stream": "^7.0.0"
   },
   "devDependencies": {
