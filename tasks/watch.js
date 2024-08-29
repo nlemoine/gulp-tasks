@@ -52,7 +52,8 @@ export default (config, g) => {
         cb();
       };
       if (
-        has(config, ['pkg', 'dependencies', 'tailwindcss']) &&
+        (has(config, ['pkg', 'dependencies', 'tailwindcss']) ||
+          has(config, ['pkg', 'devDependencies', 'tailwindcss'])) &&
         hasTask('styles', tasks)
       ) {
         watch(config.viewsSrc, g.series('styles', reloadViews));
