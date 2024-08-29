@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.3](https://github.com/nlemoine/gulp-tasks/compare/v2.1.2...v2.1.3) (2024-08-29)
+
+
+### Bug Fixes
+
+* Watch task with TW ([0bdb29a](https://github.com/nlemoine/gulp-tasks/commit/0bdb29a0a158ab68149580860625868eb486b719))
+
 ## [2.1.2](https://github.com/nlemoine/gulp-tasks/compare/v2.1.1...v2.1.2) (2024-08-23)
 
 
