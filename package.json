@@ -79,7 +79,6 @@
     "sass": "^1.78.0",
     "sass-theme-json": "^2.0.1",
     "tabletojson": "^4.1.4",
-    "tailwindcss-export-config": "git+https://github.com/nlemoine/tailwindcss-export-config.git#feat-default-key",
     "through2": "^4.0.2",
     "vinyl": "^3.0.0",
     "vinyl-buffer": "^1.0.1",
