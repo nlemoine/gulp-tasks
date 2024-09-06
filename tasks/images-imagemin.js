@@ -82,7 +82,7 @@ export default (config) => {
   }
 
   return (
-    src(config.src)
+    src(config.src, { encoding: false })
       .pipe(gulpif(shouldBeOptimized, imagemin(defaultPlugins)))
       // Remove underscored svg files
       .pipe(
