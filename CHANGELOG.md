@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.3.0](https://github.com/nlemoine/gulp-tasks/compare/v2.2.0...v2.3.0) (2024-09-06)
+
+
+### Features
+
+* Remove Tailwind to Sass task ([5ae1cd2](https://github.com/nlemoine/gulp-tasks/commit/5ae1cd23c5679b05a97c2f86cdde080873382020))
+
 ## [2.2.0](https://github.com/nlemoine/gulp-tasks/compare/v2.1.3...v2.2.0) (2024-09-06)
 
 
