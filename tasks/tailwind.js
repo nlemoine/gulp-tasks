@@ -1,5 +1,4 @@
 import { src, dest } from 'gulp';
-import TailwindExportConfig from 'tailwindcss-export-config';
 import through from 'through2';
 import vinyl from 'vinyl';
 import { extname, basename, dirname } from 'node:path';
@@ -7,6 +6,9 @@ import resolveConfig from 'tailwindcss/resolveConfig.js';
 import { has } from 'lodash-es';
 
 export default (config) => {
+
+  throw new Error('This task has been removed');
+
   let tailwindConfig = false;
   if (has(config, 'config')) {
     tailwindConfig = config.config;
