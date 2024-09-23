@@ -27,7 +27,7 @@
     "@babel/preset-env": "^7.25.4",
     "@fullhuman/postcss-purgecss": "^6.0.0",
     "@rbnlffl/gulp-rollup": "^0.2.4",
-    "@rollup/plugin-alias": "^5.1.0",
+    "@rollup/plugin-alias": "^5.1.1",
     "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-commonjs": "^26.0.1",
     "@rollup/plugin-multi-entry": "^6.0.1",
