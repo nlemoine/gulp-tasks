@@ -62,7 +62,7 @@
     "gulp-wp-pot": "^2.5.0",
     "gulp.spritesmith": "^6.13.1",
     "imagemin-gifsicle": "^7.0.0",
-    "imagemin-jpegtran": "^7.0.0",
+    "imagemin-jpegtran": "^8.0.0",
     "imagemin-mozjpeg": "^10.0.0",
     "imagemin-optipng": "^8.0.0",
     "imagemin-pngquant": "^10.0.0",
