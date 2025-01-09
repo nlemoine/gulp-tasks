@@ -1,6 +1,6 @@
 {
   "name": "@nlemoine/gulp-tasks",
-  "version": "2.3.1",
+  "version": "2.4.0",
   "description": "A set of gulp tasks",
   "homepage": "https://github.com/nlemoine/gulp-tasks#readme",
   "bugs": {
