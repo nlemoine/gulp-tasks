@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.4.0](https://github.com/nlemoine/gulp-tasks/compare/v2.3.1...v2.4.0) (2025-01-09)
+
+
+### Features
+
+* Update dependencies ([9e2692b](https://github.com/nlemoine/gulp-tasks/commit/9e2692ba13d07629a080a656163525ae2a2563cb))
+
+
+### Bug Fixes
+
+* Styles & image min tasks ([f6fd1f1](https://github.com/nlemoine/gulp-tasks/commit/f6fd1f1cb0c4f250905becb6d1080aa5f66e0569))
+
 ## [2.3.1](https://github.com/nlemoine/gulp-tasks/compare/v2.3.0...v2.3.1) (2024-09-06)
 
 
