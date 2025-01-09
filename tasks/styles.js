@@ -20,7 +20,7 @@ import { has } from 'lodash-es';
 const sass = gulpSass(dartSass);
 
 export let sassOptions = {
-  outputStyle: 'expanded',
+  style: 'expanded',
   importer: [packageImporter()],
 };
 
@@ -98,7 +98,7 @@ export default (config, mainConfig) => {
               return {};
             }
             return {
-              plugins: [purgecss(purgeCssConfig)],
+              plugins: [purgecss.default(purgeCssConfig)],
             };
           }),
         ),
