@@ -24,7 +24,7 @@
   "dependencies": {
     "@babel/core": "^7.26.0",
     "@babel/plugin-syntax-dynamic-import": "^7.8.3",
-    "@babel/preset-env": "^7.26.0",
+    "@babel/preset-env": "^7.26.8",
     "@fullhuman/postcss-purgecss": "^7.0.2",
     "@rbnlffl/gulp-rollup": "^0.2.4",
     "@rollup/plugin-alias": "^5.1.1",
