@@ -22,7 +22,7 @@
     "lint:pkg-json:fix": "find . -name package.json -not -path '*node_modules*' -execdir npx sort-package-json \\;"
   },
   "dependencies": {
-    "@babel/core": "^7.26.0",
+    "@babel/core": "^7.26.8",
     "@babel/plugin-syntax-dynamic-import": "^7.8.3",
     "@babel/preset-env": "^7.26.0",
     "@fullhuman/postcss-purgecss": "^7.0.2",
