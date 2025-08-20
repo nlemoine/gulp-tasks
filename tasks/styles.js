@@ -4,8 +4,8 @@ import { basename, extname } from 'node:path';
 import packageImporter from 'node-sass-package-importer';
 import autoprefixer from 'autoprefixer';
 import cssnano from 'cssnano';
-import dartSass from 'sass';
-import gulpSass from 'gulp-sass';
+import * as dartSass from 'sass'
+import gulpSass from 'gulp-sass/legacy.js';
 import purgecss from '@fullhuman/postcss-purgecss';
 
 import rename from 'gulp-rename';
