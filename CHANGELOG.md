@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.5.2](https://github.com/nlemoine/gulp-tasks/compare/v2.5.1...v2.5.2) (2025-08-20)
+
+
+### Bug Fixes
+
+* Revert Sass downgrade ([b2c4d22](https://github.com/nlemoine/gulp-tasks/commit/b2c4d22cedfc60bb33fd4384835cf6b376edc91e))
+
 ## [2.5.1](https://github.com/nlemoine/gulp-tasks/compare/v2.5.0...v2.5.1) (2025-08-20)
 
 
