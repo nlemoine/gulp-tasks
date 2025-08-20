@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.5.1](https://github.com/nlemoine/gulp-tasks/compare/v2.5.0...v2.5.1) (2025-08-20)
+
+
+### Bug Fixes
+
+* Revert sass version ([5626f7d](https://github.com/nlemoine/gulp-tasks/commit/5626f7d8e579e81f3e8c8ec67b930b2d1b75a3e0))
+
 ## [2.5.0](https://github.com/nlemoine/gulp-tasks/compare/v2.4.0...v2.5.0) (2025-08-20)
 
 
