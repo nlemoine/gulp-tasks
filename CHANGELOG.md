@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.5.0](https://github.com/nlemoine/gulp-tasks/compare/v2.4.0...v2.5.0) (2025-08-20)
+
+
+### Features
+
+* Bump deps ([5e2bf32](https://github.com/nlemoine/gulp-tasks/commit/5e2bf32cb88dc7c8f550df8f85ca028697da84e7))
+
+
+### Bug Fixes
+
+* task registration when using Gulp CLI with ES modules ([bd332a9](https://github.com/nlemoine/gulp-tasks/commit/bd332a94f7d8dc9a079411389a385cf40e33d9ee))
+
 ## [2.4.0](https://github.com/nlemoine/gulp-tasks/compare/v2.3.1...v2.4.0) (2025-01-09)
 
 
