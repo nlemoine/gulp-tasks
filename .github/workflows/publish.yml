@@ -26,7 +26,7 @@ jobs:
           # registry-url: "https://npm.pkg.github.com"
           # scope: "@${{ github.repository_owner }}"
 
-      - uses: google-github-actions/release-please-action@v4
+      - uses: release-please-oss/release-please-action@v5.0.0
         id: release
         with:
           release-type: 'node'
