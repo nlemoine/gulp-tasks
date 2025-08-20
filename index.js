@@ -1,4 +1,3 @@
-import { series, task } from 'gulp';
 import {
   getActiveTasks,
   getRevisionedTasks,
@@ -45,17 +44,17 @@ export default async (g, config) => {
       const { default: taskFn } = await import(`./tasks/${t.task}.js`);
       taskCb = taskFn;
     }
-    task(getTaskName(t), () => taskCb(t, config));
+    g.task(getTaskName(t), () => taskCb(t, config));
   }
 
-  task('compress', () => compress(config));
-  task('clean', () => clean(config));
-  task('build', series(...getBuildTasks(config.tasks)));
-  task(
+  g.task('compress', () => compress(config));
+  g.task('clean', () => clean(config));
+  g.task('build', g.series(...getBuildTasks(config.tasks)));
+  g.task(
     'rev',
-    series('clean', 'build', () => rev(config)),
+    g.series('clean', 'build', () => rev(config)),
   );
-  task('serve', serve(config));
-  task('watch', watch(config, g));
-  task('default', series('watch', 'serve'));
+  g.task('serve', serve(config));
+  g.task('watch', watch(config, g));
+  g.task('default', g.series('watch', 'serve'));
 };
