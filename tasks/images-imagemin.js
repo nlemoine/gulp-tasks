@@ -4,6 +4,7 @@ import { basename, extname } from 'node:path';
 import pngquant from 'imagemin-pngquant';
 import gulpif from 'gulp-if';
 import rename from 'gulp-rename';
+import imagemin, { gifsicle, mozjpeg, optipng, svgo } from 'gulp-imagemin';
 
 import isProduction from '../utils/env.js';
 import { has } from 'lodash-es';
@@ -47,15 +48,7 @@ const svgoDefaults = {
 
 export { mozjpegDefaults, pngquantDefaults, svgoDefaults };
 
-export default async (config) => {
-  const {
-    default: imagemin,
-    gifsicle,
-    mozjpeg,
-    optipng,
-    svgo,
-  } = await import('gulp-imagemin');
-
+export default (config) => {
   const shouldBeOptimized = (file) => {
     const fileBasename = basename(file.path, extname(file.path));
     return /^(_)/.exec(fileBasename) === null && isProduction;
