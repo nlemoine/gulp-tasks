@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.5.3](https://github.com/nlemoine/gulp-tasks/compare/v2.5.2...v2.5.3) (2025-08-21)
+
+
+### Bug Fixes
+
+* Imagemin tasks ([010a754](https://github.com/nlemoine/gulp-tasks/commit/010a754d5a7db6769ca0b7516441884f145def74))
+
 ## [2.5.2](https://github.com/nlemoine/gulp-tasks/compare/v2.5.1...v2.5.2) (2025-08-20)
 
 
