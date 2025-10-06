@@ -37,7 +37,7 @@
     "browser-sync": "^3.0.4",
     "browserslist": "^4.26.3",
     "cssnano": "^7.1.0",
-    "del": "^8.0.0",
+    "del": "^8.0.1",
     "globby": "^14.1.0",
     "gulp": "^5.0.1",
     "gulp-append-prepend": "^1.0.9",
